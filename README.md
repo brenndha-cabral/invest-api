@@ -11,9 +11,11 @@
  :round_pushpin: [Decisões](#decisoes)<br />
  :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Usabilidade](#usabilidade)<br />
+ :round_pushpin: [Documentação](#documentacao)<br />
  :round_pushpin: [Scripts](#scripts)<br />
  :round_pushpin: [Testes](#testes)<br />
- :round_pushpin: [Documentação](#documentacao)<br />
+ :round_pushpin: [DER](#der)<br />
+ :round_pushpin: [Arquitetura](#arquitetura)<br />
  :round_pushpin: [Referências](#referencias)<br />
  
 <h2 id="sobre">Sobre</h2>
@@ -120,6 +122,10 @@ _Obs: Veja a seção de [documentação](#documentacao) para entender melhor com
   
 > :information_source: Para acessar o deploy da aplicação, clique [aqui]() :rocket:
 
+<h2 id="documentacao">Documentação</h2>
+
+> :information_source: Acesse [aqui]() a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
+
 <h2 id="scripts">Scripts</h2>
 
 > :information_source:
@@ -129,10 +135,23 @@ _Obs: Veja a seção de [documentação](#documentacao) para entender melhor com
 
 > :information_source:
 
+<h2 id="der">Diagrama Entidade Relacionamento</h2>
 
-<h2 id="documentacao">Documentação</h2>
 
-> :information_source: Acesse [aqui]() a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
+<h2 id="arquitetura">Arquitetura</h2>
+
+Este projeto foi elaborado nos padrões da arquitetura MSC onde existem três camadas:
+
+- **Camada de Modelo (M)**: Arquivos que executam as operações do banco de dados, como criar conexões e executar queries;
+
+- **Camada de Serviço (S)**: Arquivos que estruturam as regras de negócio, geralmente é quem chama os métodos definidos na camada de modelo;
+
+- **Camada de Controladores (C)**: Interface mais próxima da pessoa usuária ou de uma requisição, irá processar e chamar as devidas funções da camada de serviço.
+
+<div align="center">
+ <img src="./public/assets/images/msc-software-architecture.png" alt="Arquitetura de Software MSC" width="1000">
+</div>
+
 
 <h2 id="referencias">Referências</h2>
 
