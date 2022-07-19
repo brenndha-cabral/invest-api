@@ -94,9 +94,9 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - `npm install`: Irá instalar todas as dependências;
 
-- `npm prestart`: Irá rodar os comandos para gerar as tabelas, models e seeders no database;
+- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders no database caso ainda não estejam criadas;
 
-- `npm start`: Irá rodar a aplicação na porta `3000` pelo `nodemon`, ou adapte o docker-compose e o `.env` caso sinta necessidade.
+- `npm start`: Irá rodar a aplicação na porta `3000` ou adapte o docker-compose e o `.env` caso sinta necessidade.
 
 
 ### 👉 Sem Docker
