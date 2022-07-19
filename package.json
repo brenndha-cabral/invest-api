@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Neste projeto foi desenvolvida uma API que se conecta a um banco de dados para gerenciar uma carteira de investimentos",
   "main": "src/server.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "mocha './src/**/*.test.js'",
     "prestart": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
@@ -27,7 +27,8 @@
     "eslint": "^8.20.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sequelize-test-helpers": "^1.4.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
