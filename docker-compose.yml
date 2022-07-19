@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: invest_api
+    tty: true
+    stdin_open: true
+    ports:
+      - ${PORT}:3000
