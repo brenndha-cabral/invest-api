@@ -127,7 +127,17 @@ _Obs: Veja a seção de [documentação](#documentacao) para entender melhor com
 
 <h2 id="scripts">Scripts</h2>
 
-> :information_source:
+> :information_source: Aqui estão os scripts da aplicação para que você possa utilizar, lembrando que o `docker-compose` já irá rodar o `npm run prestart` e `npm run start`.
+
+- `npm run test`: Irá rodar todos os testes unitários da aplicação;
+
+- `npm run start`: Irá rodar a aplicação (automaticamente irá rodar o `npm run prestart`);
+
+- `npm run dev`: Irá rodar a aplicação através do `nodemon`, como desenvolvimento;
+
+- `npm run lint`: Irá apontar todas as inconcistências de `lint`;
+
+- `npm run lint-fix`: Irá corrigir o máximo de inconcistências de `lint` automaticamente.
 
 
 <h2 id="testes">Testes</h2>
