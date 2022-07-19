@@ -32,7 +32,6 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 <div>
   <img title="JavaScript" alt="JavaScript" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
   <img title="NodeJS" alt="NodeJS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg">
-  <img title="Nodemon" alt="Nodemon" height="30" width="30" src="./public/assets/images/nodemon.png">
   <img title="Express" alt="Express" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg">
   <img title="Sequelize" alt="Sequelize" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sequelize/sequelize-original.svg">
   <img title="JWT" alt="JWT" height="30" width="30" src="./public/assets/images/jwt.png">
