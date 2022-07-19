@@ -137,6 +137,10 @@ _Obs: Veja a seção de [documentação](#documentacao) para entender melhor com
 
 <h2 id="der">Diagrama Entidade Relacionamento</h2>
 
+<div align="center">
+ <img src="./public/assets/images/der.png" alt="Diagrama Entidade Relacionamento" width="1000">
+</div>
+
 
 <h2 id="arquitetura">Arquitetura</h2>
 
