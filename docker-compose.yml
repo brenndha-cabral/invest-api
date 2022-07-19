@@ -4,10 +4,10 @@ services:
 
   backend:
     build:
-      context: backend
+      context: .
       dockerfile: Dockerfile
     container_name: invest_api
     tty: true
     stdin_open: true
     ports:
-      - ${PORT}:3000
+      - ${SERVER_PORT}:3000
