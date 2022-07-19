@@ -2,9 +2,11 @@
   "name": "invest-api",
   "version": "1.0.0",
   "description": "Neste projeto foi desenvolvida uma API que se conecta a um banco de dados para gerenciar uma carteira de investimentos",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+
   },
   "repository": {
     "type": "git",
