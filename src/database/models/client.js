@@ -1,4 +1,4 @@
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Client = sequelize.define('Client', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -14,13 +14,6 @@ export default (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'Clients',
   });
-
-  Client.associate = (models) => {
-    Client.hasMany(models.Order, {
-      foreignKey: 'clientId',
-      as: 'orders',
-    });
-  };
 
   return Client;
 };

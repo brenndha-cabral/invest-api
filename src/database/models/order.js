@@ -1,13 +1,5 @@
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    clientId: {
-      type: DataTypes.INTEGER,
-      foreignKey: true,
-    },
-    assetId: {
-      type: DataTypes.INTEGER,
-      foreignKey: true,
-    },
     quantity: DataTypes.NUMBER,
     value: DataTypes.DECIMAL(10, 2),
     created: DataTypes.DATE,
@@ -18,13 +10,13 @@ export default (sequelize, DataTypes) => {
   });
 
   Order.associate = (models) => {
-    Order.belongsTo(models.Client, {
+    models.Asset.belongsToMany(models.Client, {
       as: 'clients',
       through: Order,
       foreignKey: 'clientId',
       otherKey: 'assetId',
     });
-    Order.hasOne(models.Asset, {
+    models.Client.belongsToMany(models.Asset, {
       as: 'assets',
       through: Order,
       foreignKey: 'assetId',

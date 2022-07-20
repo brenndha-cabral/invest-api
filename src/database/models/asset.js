@@ -1,4 +1,4 @@
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Asset = sequelize.define('Asset', {
     name: DataTypes.STRING,
     code: DataTypes.STRING,
@@ -9,13 +9,6 @@ export default (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'Assets',
   });
-
-  Asset.associate = (models) => {
-    Asset.belongsToMany(models.Order, {
-      foreignKey: 'assetId',
-      as: 'assets',
-    });
-  };
 
   return Asset;
 };
