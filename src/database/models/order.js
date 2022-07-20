@@ -18,13 +18,13 @@ export default (sequelize, DataTypes) => {
   });
 
   Order.associate = (models) => {
-    models.Category.belongsTo(models.Client, {
+    Order.belongsTo(models.Client, {
       as: 'clients',
       through: Order,
       foreignKey: 'clientId',
       otherKey: 'assetId',
     });
-    models.BlogPost.belongsTo(models.Asset, {
+    Order.hasOne(models.Asset, {
       as: 'assets',
       through: Order,
       foreignKey: 'assetId',
