@@ -3,7 +3,7 @@ export default (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    cfp: DataTypes.STRING,
+    cpf: DataTypes.STRING,
     image: DataTypes.STRING,
     adm: DataTypes.BOOLEAN,
     balance: DataTypes.DECIMAL(10, 2),
