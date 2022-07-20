@@ -1,8 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 require('express-async-errors');
-const routes = require('./routes/index.js');
-// const errorMiddleware = require('./middleware/errorMiddleware.js');
+const routes = require('./routes');
+const { errorMiddleware } = require('./middleware/errorMiddleware');
 
 const { PORT } = process.env;
 
@@ -12,6 +12,6 @@ app.use(express.json());
 
 app.use('/', routes);
 
-// app.use(errorMiddleware); // Resolver pois está dando erro
+app.use(errorMiddleware);
 
 app.listen(PORT, () => console.log('Listening at', PORT));
