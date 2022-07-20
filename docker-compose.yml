@@ -2,10 +2,29 @@ version: "3"
 
 services:
 
-  backend:
-    build: .
+  node:
+    image: node:16-alpine
+    user: node
+    working_dir: /app
+    volumes:
+      - ./:/app
     container_name: invest_api
     tty: true
     stdin_open: true
+    command: sh -c "npm install && npm run prestart && npm run dev"
     ports:
-      - ${SERVER_PORT}:3000
+      - 3000:3000
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: "${DATABASE_USER}"
+      DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+      JWT_SECRET: "${JWT_SECRET}"
+    
+  db:
+    container_name: invest_api_db
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+      TZ: "${TIMEZONE}"
