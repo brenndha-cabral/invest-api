@@ -1,6 +1,7 @@
 export default (sequelize, DataTypes) => {
   const Asset = sequelize.define('Asset', {
     name: DataTypes.STRING,
+    code: DataTypes.STRING,
     quantity: DataTypes.NUMBER,
     value: DataTypes.DECIMAL(10, 2),
     created: DataTypes.DATE,
@@ -10,7 +11,7 @@ export default (sequelize, DataTypes) => {
   });
 
   Asset.associate = (models) => {
-    Asset.hasMany(models.Order, {
+    Asset.belongsToMany(models.Order, {
       foreignKey: 'assetId',
       as: 'assets',
     });
