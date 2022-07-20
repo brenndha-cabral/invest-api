@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
     quantity: DataTypes.NUMBER,
     value: DataTypes.DECIMAL(10, 2),
+    type: DataTypes.ENUM('buy', 'sell'),
     created: DataTypes.DATE,
   }, {
     timestamps: false,

@@ -38,7 +38,7 @@ module.exports = {
         id: 5,
         name: 'Visa',
         code: 'VISA34',
-        quantity: 60,
+        quantity: 100,
         value: 6.97,
         created: new Date('2021-07-01T19:58:00.000Z'),
       },

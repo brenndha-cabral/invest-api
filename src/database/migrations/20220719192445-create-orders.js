@@ -34,6 +34,10 @@ module.exports = {
       value: {
         type: Sequelize.DECIMAL(10, 2),
       },
+      type: {
+        allowNull: false,
+        type: Sequelize.ENUM('buy', 'sell'),
+      },
       created: {
         allowNull: false,
         type: Sequelize.DATE,
