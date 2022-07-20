@@ -14,11 +14,10 @@ import {
 import assetModel from '../../src/database/models/asset.js';
 import orderModel from '../../src/database/models/order.js';
 
-const Asset = assetModel(sequelize, dataTypes);
-const Order = orderModel(sequelize, dataTypes);
 
 describe('Verifica se Asset model existe, se tem as suas propriedades e se possui as associações corretas', () => {
-
+  const Asset = assetModel(sequelize, dataTypes);
+  const Order = orderModel(sequelize, dataTypes);
   const asset = new Asset();
 
   checkModelName(Asset)('Asset');
