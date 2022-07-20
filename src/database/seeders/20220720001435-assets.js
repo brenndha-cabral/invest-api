@@ -3,7 +3,7 @@ module.exports = {
     await queryInterface.bulkInsert(
       'Assets',
       [{
-        id: 1,
+
         name: 'Vale',
         code: 'VALE3',
         quantity: 300,
@@ -11,7 +11,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 2,
         name: 'Natura',
         code: 'NTCO3',
         quantity: 600,
@@ -19,7 +18,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 3,
         name: 'BB Seguridade',
         code: 'BBSE3',
         quantity: 470,
@@ -27,7 +25,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 4,
         name: 'Localiza',
         code: 'RENT3',
         quantity: 145,
@@ -35,7 +32,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 5,
         name: 'Visa',
         code: 'VISA34',
         quantity: 100,
@@ -43,7 +39,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 6,
         name: 'Alpargatas',
         code: 'ALPA4',
         quantity: 124,
@@ -51,7 +46,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 7,
         name: 'Klabin',
         code: 'KLBN11',
         quantity: 5,
@@ -59,7 +53,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 8,
         name: 'Assaí',
         code: 'ASAI3',
         quantity: 27,
@@ -67,7 +60,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 9,
         name: 'Merck & Co',
         code: 'MRCK34',
         quantity: 47,
@@ -75,7 +67,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 10,
         name: 'Alphabet',
         code: 'GOGL34',
         quantity: 2345,

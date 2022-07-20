@@ -3,7 +3,6 @@ module.exports = {
     await queryInterface.bulkInsert(
       'Orders',
       [{
-        id: 1,
         client_id: 2,
         asset_id: 5,
         quantity: 13,
@@ -12,7 +11,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 2,
         client_id: 2,
         asset_id: 5,
         quantity: 8,
@@ -21,7 +19,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 3,
         client_id: 2,
         asset_id: 1,
         quantity: 7,
@@ -30,7 +27,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 4,
         client_id: 1,
         asset_id: 7,
         quantity: 29,
@@ -39,7 +35,6 @@ module.exports = {
         created: new Date('2021-07-01T19:58:00.000Z'),
       },
       {
-        id: 5,
         client_id: 1,
         asset_id: 3,
         quantity: 10,
