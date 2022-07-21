@@ -1,4 +1,4 @@
-const { buyAssetService, sellAssetService } = require('../services/assetService');
+const { assetTransactionService } = require('../services/assetService');
 const { HttpException } = require('../utils/httpException');
 const { statusCode, statusResponse } = require('../utils/httpStatus');
 
@@ -6,7 +6,7 @@ const buyAssetController = async (req, res) => {
   try {
     const { codCliente, codAtivo, qtdeAtivo } = req.body;
 
-    const response = await buyAssetService(codCliente, codAtivo, Number(qtdeAtivo));
+    const response = await assetTransactionService(codCliente, codAtivo, Number(qtdeAtivo), 'buy');
 
     if (!response) {
       return res.status(statusCode.OK).json({ message: 'Not possible buy an asset. Please, try again.' });
@@ -21,7 +21,7 @@ const sellAssetController = async (req, res) => {
   try {
     const { codCliente, codAtivo, qtdeAtivo } = req.body;
 
-    const response = await sellAssetService(codCliente, codAtivo, Number(qtdeAtivo));
+    const response = await assetTransactionService(codCliente, codAtivo, Number(qtdeAtivo), 'sell');
 
     if (!response) {
       return res.status(statusCode.OK).json({ message: 'Not possible sell an asset. Please, try again.' });

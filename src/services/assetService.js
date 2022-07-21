@@ -7,47 +7,25 @@ const config = require('../database/config/config')[env];
 
 const sequelize = new Sequelize(config);
 
-const buyAssetService = async (codCliente, codAtivo, qtdeAtivo) => {
+const assetTransactionService = async (codCliente, codAtivo, qtdeAtivo, type) => {
   const { dataValues } = await Asset.findOne({
     where: { id: codAtivo },
   });
 
-  const newQuantity = dataValues.quantity - qtdeAtivo;
+  let newQuantity;
+
+  if (type === 'buy') {
+    newQuantity = dataValues.quantity - qtdeAtivo;
+  } else {
+    newQuantity = dataValues.quantity + qtdeAtivo;
+  }
 
   const response = await sequelize.transaction(async (t) => {
     const order = await Order.create({
       clientId: codCliente,
       assetId: codAtivo,
       quantity: qtdeAtivo,
-      type: 'buy',
-      value: dataValues.value,
-    }, { transaction: t });
-
-    await Asset.update(
-      { quantity: newQuantity },
-      { where: { id: codAtivo } },
-      { transaction: t },
-    );
-
-    return order;
-  });
-
-  return response;
-};
-
-const sellAssetService = async (codCliente, codAtivo, qtdeAtivo) => {
-  const { dataValues } = await Asset.findOne({
-    where: { id: codAtivo },
-  });
-
-  const newQuantity = dataValues.quantity + qtdeAtivo;
-
-  const response = await sequelize.transaction(async (t) => {
-    const order = await Order.create({
-      clientId: codCliente,
-      assetId: codAtivo,
-      quantity: qtdeAtivo,
-      type: 'sell',
+      type,
       value: dataValues.value,
     }, { transaction: t });
 
@@ -64,6 +42,5 @@ const sellAssetService = async (codCliente, codAtivo, qtdeAtivo) => {
 };
 
 module.exports = {
-  buyAssetService,
-  sellAssetService,
+  assetTransactionService,
 };
