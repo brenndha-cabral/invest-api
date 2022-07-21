@@ -19,5 +19,46 @@
       "url": "",
       "description": "API de produção"
     }
-  ]
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login para acessar a aplicação",
+        "description": "Esta rota irá permitir que a pessoa usuária faça login para ter acesso a aplicação.",
+        "tags": ["Login"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "login": {
+                  "value": {
+                    "email": "brenndha@yahoo.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
 }
