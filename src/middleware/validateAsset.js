@@ -2,6 +2,7 @@ const { check, validationResult } = require('express-validator');
 const { HttpException } = require('../utils/httpException');
 const { statusCode, statusResponse } = require('../utils/httpStatus');
 const { Asset } = require('../database/models/index');
+const { calculateCustody } = require('../utils/calculateCustody');
 
 const validateFieldsInvest = [
   check('codCliente')
@@ -34,7 +35,7 @@ const validateRulesInvest = (req, res, next) => {
   return next();
 };
 
-const validateAsset = async (req, res, next) => {
+const validateBuyAsset = async (req, res, next) => {
   try {
     const { codAtivo, qtdeAtivo } = req.body;
 
@@ -56,8 +57,33 @@ const validateAsset = async (req, res, next) => {
   }
 };
 
+const validateSellAsset = async (req, res, next) => {
+  try {
+    const { codCliente, codAtivo, qtdeAtivo } = req.body;
+
+    const asset = await Asset.findOne({
+      where: { id: codAtivo },
+    });
+
+    if (!asset) {
+      return res.status(statusCode.BAD_REQUEST).json({ message: 'Asset not found. Please, try again.' });
+    }
+
+    const assetCustody = await calculateCustody(codCliente, codAtivo);
+
+    if (Number(qtdeAtivo) > assetCustody) {
+      return res.status(statusCode.BAD_REQUEST).json({ message: 'Asset quantity must be less or equal the available or client does not have this asset. Please, try again.' });
+    }
+
+    return next();
+  } catch (error) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  }
+};
+
 module.exports = {
   validateFieldsInvest,
   validateRulesInvest,
-  validateAsset,
+  validateBuyAsset,
+  validateSellAsset,
 };
