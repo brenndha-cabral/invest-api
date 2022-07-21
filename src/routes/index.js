@@ -1,11 +1,15 @@
 const express = require('express');
 
 const loginRoutes = require('./loginRoute');
-const assetRoutes = require('./assetRoutes');
+const clientRoutes = require('./clientRoutes');
+const assetRoutes = require('./assetsRoutes');
+const investRoutes = require('./investRoutes');
 
 const router = express.Router();
 
 router.use('/login', loginRoutes);
-router.use('/investimentos', assetRoutes);
+router.use('/clientes', clientRoutes);
+router.use('/ativos', assetRoutes);
+router.use('/investimentos', investRoutes);
 
 module.exports = router;
