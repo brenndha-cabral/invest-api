@@ -41,6 +41,16 @@ const assetTransactionService = async (codCliente, codAtivo, qtdeAtivo, type) =>
   return response;
 };
 
+const assetById = async (id) => {
+  const response = await Asset.findOne({
+    attributes: ['id', 'quantity', 'value'],
+    where: { id },
+  });
+
+  return response;
+};
+
 module.exports = {
   assetTransactionService,
+  assetById,
 };
