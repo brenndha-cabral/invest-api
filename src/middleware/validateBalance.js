@@ -29,7 +29,7 @@ const validateRulesBalance = (req, res, next) => {
   return next();
 };
 
-const validateBalanceByClient = async (req, res, next) => {
+const validateBalanceDeposit = async (req, res, next) => {
   try {
     const { codCliente, valor } = req.body;
 
@@ -51,8 +51,31 @@ const validateBalanceByClient = async (req, res, next) => {
   }
 };
 
+const validateBalanceWithdraw = async (req, res, next) => {
+  try {
+    const { codCliente, valor } = req.body;
+
+    const client = await Client.findOne({
+      where: { id: codCliente },
+    });
+
+    if (!client) {
+      return res.status(statusCode.BAD_REQUEST).json({ message: 'Client not found. Please, try again.' });
+    }
+
+    if (valor > client.dataValues.balance || valor <= 0) {
+      return res.status(statusCode.BAD_REQUEST).json({ message: 'Value must be greater then zero and available in balance. Please, try again.' });
+    }
+
+    return next();
+  } catch (error) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  }
+};
+
 module.exports = {
   validateFieldsBalance,
   validateRulesBalance,
-  validateBalanceByClient,
+  validateBalanceDeposit,
+  validateBalanceWithdraw,
 };
