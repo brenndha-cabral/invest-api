@@ -2,7 +2,7 @@ const { check, validationResult } = require('express-validator');
 const { HttpException } = require('../utils/httpException');
 const { statusCode, statusResponse } = require('../utils/httpStatus');
 const { Asset } = require('../database/models/index');
-const { calculateCustody } = require('../utils/calculateCustody');
+const { calculateCustodyById } = require('../utils/calculateCustody');
 
 const validateFieldsInvest = [
   check('codCliente')
@@ -69,7 +69,7 @@ const validateSellAsset = async (req, res, next) => {
       return res.status(statusCode.BAD_REQUEST).json({ message: 'Asset not found. Please, try again.' });
     }
 
-    const assetCustody = await calculateCustody(codCliente, codAtivo);
+    const assetCustody = await calculateCustodyById(codCliente, codAtivo);
 
     if (Number(qtdeAtivo) > assetCustody) {
       return res.status(statusCode.BAD_REQUEST).json({ message: 'Asset quantity must be less or equal the available or client does not have this asset. Please, try again.' });
