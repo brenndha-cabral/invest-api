@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/docs",
+      "url": "http://localhost:3000",
       "description": "API de desenvolvimento"
     },
     {
@@ -20,6 +20,13 @@
       "description": "API de produção"
     }
   ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
   "paths": {
     "/login": {
       "post": {
@@ -35,9 +42,37 @@
               "examples": {
                 "login": {
                   "value": {
-                    "email": "brenndha@yahoo.com",
+                    "email": "lewishamilton@gmail.com",
                     "password": "123456"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Invalid fields"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
+                }
                 }
               }
             }
@@ -52,12 +87,23 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "required": true
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "required": true
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "in": "header",
+        "value": "Inset token here",
+        "bearerFormat": "JWT"
       }
     }
   }
