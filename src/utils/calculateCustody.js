@@ -55,7 +55,7 @@ const calculateAllCustody = async (clientId) => {
 
   // Aqui lupa pelo array e monta o objeto de acordo com as posições,
   // pega a quantity do reduce na posição do id(3 || 7) e na posição zero pois é da linha 41
-  // pega o value do reduce na posição do id(3 || 7 e na posição zero um é da linha 42
+  // pega o value do reduce na posição do id(3 || 7) e na posição um é da linha 42
   const custody = custodyKeys.map((id) => (
     {
       codAtivo: Number(id),
@@ -68,14 +68,14 @@ const calculateAllCustody = async (clientId) => {
   // Saída para o id do cliente 1:
   // [
   //   {
-  //     asset_id: 3,
-  //     quantity: 5,
-  //     value: 389.7,
+  //     codAtivo: 3,
+  //     qtdeAtivo: 5,
+  //     valor: 389.7,
   //   },
   //   {
-  //     asset_id: 7,
-  //     quantity: 19,
-  //     value: 28.71,
+  //     codAtivo: 7,
+  //     qtdeAtivo: 19,
+  //     valor: 28.71,
   //   },
   // ],
 };
