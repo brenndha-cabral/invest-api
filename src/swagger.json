@@ -51,6 +51,19 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
+                  }
+                }
+              }
+            }
+          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -64,15 +77,15 @@
               }
             }
           },
-          "200": {
-            "description": "OK",
+          "500": {
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "example": {
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
-                }
+                    "message": "Internal Server Error"
+                  }
                 }
               }
             }
