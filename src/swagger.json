@@ -92,6 +92,98 @@
           }
         }
       }
+    },
+    "/clientes": {
+      "get": {
+        "summary": "Lista todos os clientes",
+        "description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
+        "tags": ["Clientes"],
+        "security": [{
+          "bearerAuth": []
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": [{
+                    "name": "Lewis Hamilton",
+                    "email": "lewishamilton@gmail.com",
+                    "cpf": "11111111111",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+                    "adm": true,
+                    "balance": 1200.00,
+                    "phone": "111111111111",
+                    "address": "Avenue Regex, 576 NY",
+                    "created": "2021-07-01T19:58:00.000Z"
+                  }]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clientes/{id}": {
+      "get": {
+        "summary": "Lista todos os clientes",
+        "description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
+        "tags": ["Clientes"],
+        "security": [{
+          "bearerAuth": []
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Lewis Hamilton",
+                    "email": "lewishamilton@gmail.com",
+                    "cpf": "11111111111",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+                    "adm": true,
+                    "balance": 1200.00,
+                    "phone": "111111111111",
+                    "address": "Avenue Regex, 576 NY",
+                    "created": "2021-07-01T19:58:00.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
