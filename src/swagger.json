@@ -1,0 +1,23 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Investimentos",
+    "description": "Esta aplicação tem como objetivo gerenciar investimentos em ações, com algumas funcionalidades de conta digital.",
+    "contact": {
+      "name": "Brenndha Cabral",
+      "url": "https://github.com/brenndha-cabral",
+      "email": "brenndha.cabral@yahoo.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/docs",
+      "description": "API de desenvolvimento"
+    },
+    {
+      "url": "",
+      "description": "API de produção"
+    }
+  ]
+}
