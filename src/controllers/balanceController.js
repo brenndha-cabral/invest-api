@@ -6,7 +6,9 @@ const balanceUpdateController = async (req, res) => {
   try {
     const { codCliente, valor } = req.body;
 
-    const response = await balanceUpdateService(codCliente, valor);
+    const { path } = req;
+
+    const response = await balanceUpdateService(codCliente, valor, path);
 
     if (!response) {
       return res.status(statusCode.BAD_REQUEST).json({ message: 'Not possible update balance. Please, try again.' });
