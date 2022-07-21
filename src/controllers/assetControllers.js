@@ -1,4 +1,4 @@
-const { assetTransactionService } = require('../services/assetService');
+const { assetTransactionService, assetById } = require('../services/assetService');
 const { HttpException } = require('../utils/httpException');
 const { statusCode, statusResponse } = require('../utils/httpStatus');
 
@@ -32,7 +32,27 @@ const sellAssetController = async (req, res) => {
   }
 };
 
+const assetByIdController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const response = await assetById(id);
+
+    if (!response) {
+      return res.status(statusCode.OK).json({ message: 'Asset not found. Please, try again.' });
+    }
+    return res.status(statusCode.OK).json({
+      codAtivo: response.id,
+      qtdeAtivo: response.quantity,
+      valor: response.value,
+    });
+  } catch (error) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  }
+};
+
 module.exports = {
   buyAssetController,
   sellAssetController,
+  assetByIdController,
 };
