@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     models.Asset.belongsToMany(models.Client, {
       as: 'clients',
       through: Order,
-      foreignKey: 'clientId',
-      otherKey: 'assetId',
+      foreignKey: 'asset_id',
+      otherKey: 'client_id',
     });
     models.Client.belongsToMany(models.Asset, {
       as: 'assets',
       through: Order,
-      foreignKey: 'assetId',
-      otherKey: 'clientId',
+      foreignKey: 'client_id',
+      otherKey: 'asset_id',
     });
   };
 
