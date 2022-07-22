@@ -1,4 +1,5 @@
 const { check, validationResult } = require('express-validator');
+const { HttpException } = require('../utils/httpException');
 const { statusCode } = require('../utils/httpStatus');
 
 const validateFieldsLogin = [
@@ -12,8 +13,10 @@ const validateFieldsLogin = [
 const validateRulesLogin = (req, res, next) => {
   const errors = validationResult(req);
 
+  const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
+
   if (!errors.isEmpty()) {
-    return res.status(statusCode.BAD_REQUEST).json({ errors: errors.array() });
+    throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
   }
   return next();
 };
