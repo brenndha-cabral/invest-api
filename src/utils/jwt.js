@@ -1,9 +1,9 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { HttpException } = require('./httpException');
-const { statusCode, statusResponse } = require('./httpStatus');
+const { statusCode } = require('./httpStatus');
 
-const SECRET = process.env.JWT_SECRET;
+const { JWT_SECRET } = process.env;
 
 const jwtConfig = {
   expiresIn: '6h',
@@ -12,17 +12,17 @@ const jwtConfig = {
 
 const generateToken = ({ id, name, adm }) => {
   try {
-    return jwt.sign({ id, name, adm }, SECRET, jwtConfig);
+    return jwt.sign({ id, name, adm }, JWT_SECRET, jwtConfig);
   } catch (error) {
-    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Could not generate token. Please, try again.');
   }
 };
 
 const authToken = async (token) => {
   try {
-    return jwt.verify(token, SECRET);
+    return jwt.verify(token, JWT_SECRET);
   } catch (error) {
-    throw new HttpException(statusCode.UNAUTHORIZED, 'Invalid token');
+    return false;
   }
 };
 
