@@ -16,7 +16,7 @@
       "description": "API de desenvolvimento"
     },
     {
-      "url": "",
+      "url": "https://bc-invest-api.herokuapp.com",
       "description": "API de produção"
     }
   ],
