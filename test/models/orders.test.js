@@ -1,19 +1,19 @@
-import chai, { expect } from 'chai';
+const chai = require('chai');
 
-import sinonChai from 'sinon-chai';
+const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai)
 
-import {
+const {
   sequelize,
   dataTypes,
   checkModelName,
   checkPropertyExists,
-} from 'sequelize-test-helpers';
+} = require('sequelize-test-helpers');
 
-import orderModel from '../../src/database/models/order.js';
-import clientModel from '../../src/database/models/client.js';
-import assetModel from '../../src/database/models/asset.js';
+const orderModel = require('../../src/database/models/order.js');
+const clientModel = require('../../src/database/models/client.js');
+const assetModel = require('../../src/database/models/asset.js');
 
 
 describe('Verifica se Order model existe, se tem as suas propriedades e se possui as associações corretas', () => {
@@ -26,8 +26,6 @@ describe('Verifica se Order model existe, se tem as suas propriedades e se possu
 
   context('Verifica se existe todas as propriedades no model', () => {
     [
-      'clientId',
-      'assetId',
       'quantity',
       'value',
       'created',
@@ -42,11 +40,15 @@ describe('Verifica se Order model existe, se tem as suas propriedades e se possu
     });
 
     it('Verifica se uma Order pertence a um Client', () => {
-      expect(Order.belongsTo).to.have.been.calledWith(Client)
+      chai.expect(Asset.belongsToMany).to.have.been.calledWith(Client, {
+        through: Order,
+      })
     }) 
     
     it('Verifica se uma Order tem um Asset', () => {
-      expect(Order.hasOne).to.have.been.calledWith(Asset)
+      chai.expect(Client.belongsToMany).to.have.been.calledWith(Asset, {
+        through: Order,
+      })
     })
   });
 });

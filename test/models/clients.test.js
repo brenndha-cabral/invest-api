@@ -1,19 +1,19 @@
-import chai, { expect } from 'chai';
+const chai = require('chai');
 
-import sinonChai from 'sinon-chai';
+const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai)
 
-import {
+const {
   sequelize,
   dataTypes,
   checkModelName,
   checkPropertyExists,
-} from 'sequelize-test-helpers';
+} = require('sequelize-test-helpers');
 
-import clientModel from '../../src/database/models/client.js';
+const clientModel = require('../../src/database/models/client.js');
 
-import orderModel from '../../src/database/models/order.js';
+const orderModel = require('../../src/database/models/order.js');
 
 
 describe('Verifica se Client model existe, se tem as suas propriedades e se possui as associações corretas', () => {
@@ -45,7 +45,7 @@ describe('Verifica se Client model existe, se tem as suas propriedades e se poss
     });
 
     it('Verifica se um Client tem muitas Orders', () => {
-      expect(Client.hasMany).to.have.been.calledWith(Order)
+      chai.expect(Client.hasMany).to.have.been.calledWith(Order)
     }) 
     
   });
