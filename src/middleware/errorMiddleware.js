@@ -1,12 +1,9 @@
-const HttpException = require('../utils/httpException');
-const { statusCode, statusResponse } = require('../utils/httpStatus');
+const { statusCode } = require('../utils/httpStatus');
 
 const errorMiddleware = async (error, _req, res, _next) => {
-  if (error instanceof HttpException) {
-    res.status(error.status).json({ message: error.message });
-  }
-  res.status(statusCode.INTERNAL_SERVER_ERROR)
-    .json({ message: statusResponse.INTERNAL_SERVER_ERROR });
+  res
+    .status(error.status || statusCode.INTERNAL_SERVER_ERROR)
+    .json({ message: error.message || 'Unexpected error. Please, try again' });
 };
 
 module.exports = {
