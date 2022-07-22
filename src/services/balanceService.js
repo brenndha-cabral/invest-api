@@ -1,24 +1,28 @@
 const { Client } = require('../database/models');
 
 const balanceUpdateService = async (codClient, value, path) => {
-  const { dataValues } = await Client.findOne(
+  const response = await Client.findOne(
     { where: { id: codClient } },
   );
 
-  let updateBalance;
+  if (response) {
+    let updateBalance;
 
-  if (path === '/deposito') {
-    updateBalance = dataValues.balance + value;
-  } else {
-    updateBalance = dataValues.balance - value;
+    if (path === '/deposito') {
+      updateBalance = response.balance + value;
+    } else {
+      updateBalance = response.balance - value;
+    }
+
+    const [update] = await Client.update(
+      { balance: updateBalance },
+      { where: { id: codClient } },
+    );
+
+    return update.length > 0;
   }
 
-  const update = await Client.update(
-    { balance: updateBalance },
-    { where: { id: codClient } },
-  );
-
-  return update > 0;
+  return null;
 };
 
 module.exports = {
