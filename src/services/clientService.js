@@ -12,7 +12,6 @@ const getClientWithAssetService = async (id) => {
 
 const balanceById = async (id) => {
   const { dataValues } = await Client.findOne({
-    // attributes: ['id, balance'],
     where: { id },
   });
 
