@@ -47,6 +47,10 @@ const assetById = async (id) => {
     where: { id },
   });
 
+  if (!response) {
+    return null;
+  }
+
   return response;
 };
 
