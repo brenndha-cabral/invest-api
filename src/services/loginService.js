@@ -2,13 +2,17 @@ const { Client } = require('../database/models');
 const { generateToken } = require('../utils/jwt');
 
 const loginService = async (email, password) => {
-  const { dataValues } = await Client.findOne({
+  const response = await Client.findOne({
     where: { email, password },
   });
 
-  const token = generateToken(dataValues);
+  if (response) {
+    const token = generateToken(response);
 
-  return { token };
+    return { token };
+  }
+
+  return null;
 };
 
 module.exports = {
