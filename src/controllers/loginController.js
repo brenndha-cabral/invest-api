@@ -8,7 +8,12 @@ const loginController = async (req, res) => {
 
     const token = await loginService(email, password);
 
-    return res.status(statusCode.OK).json(token);
+    if (!token) {
+      return res.status(statusCode.OK).json(token);
+    }
+
+    return res.status(statusCode.INTERNAL_SERVER_ERROR)
+      .json({ message: 'Unable to login. Please, try again.' });
   } catch (error) {
     throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
   }
