@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha ./test/**/*.js --exit",
     "test:mocha": "nyc mocha ./test/**/*.js --exit",
-    "predev": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
