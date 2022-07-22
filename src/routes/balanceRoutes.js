@@ -1,6 +1,6 @@
 const express = require('express');
-const { balanceUpdateController } = require('../controllers/balanceController');
-const { getBalanceById } = require('../controllers/clientController');
+const { setBalanceUpdateController } = require('../controllers/balanceController');
+const { getBalanceByIdController } = require('../controllers/clientController');
 const {
   validateFieldsBalance,
   validateRulesBalance,
@@ -10,8 +10,8 @@ const {
 
 const router = express.Router();
 
-router.post('/deposito', validateFieldsBalance, validateRulesBalance, validateBalanceDeposit, balanceUpdateController);
-router.post('/saque', validateFieldsBalance, validateRulesBalance, validateBalanceWithdraw, balanceUpdateController);
-router.get('/:id', getBalanceById);
+router.post('/deposito', validateFieldsBalance, validateRulesBalance, validateBalanceDeposit, setBalanceUpdateController);
+router.post('/saque', validateFieldsBalance, validateRulesBalance, validateBalanceWithdraw, setBalanceUpdateController);
+router.get('/:id', getBalanceByIdController);
 
 module.exports = router;
