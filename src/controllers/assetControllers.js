@@ -1,58 +1,74 @@
-const { assetTransactionService, assetById } = require('../services/assetService');
+const {
+  buyOrSellAssetService,
+  getAssetByIdService,
+  getAllAssetsService,
+  getAssetByCodeService,
+  setNewAssetService,
+} = require('../services/assetService');
 const { HttpException } = require('../utils/httpException');
-const { statusCode, statusResponse } = require('../utils/httpStatus');
+const { statusCode } = require('../utils/httpStatus');
 
-const buyAssetController = async (req, res) => {
-  try {
-    const { codCliente, codAtivo, qtdeAtivo } = req.body;
+const setNewOrderController = async (req, res) => {
+  const { codCliente, codAtivo, qtdeAtivo } = req.body;
+  const { path } = req;
 
-    const response = await assetTransactionService(codCliente, codAtivo, Number(qtdeAtivo), 'buy');
+  const order = await buyOrSellAssetService(codCliente, codAtivo, Number(qtdeAtivo), path);
 
-    if (!response) {
-      return res.status(statusCode.OK).json({ message: 'Not possible buy an asset. Please, try again.' });
-    }
-    return res.status(statusCode.OK).json({ message: 'Order completed successfully.' });
-  } catch (error) {
-    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  if (!order) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Unable to trade an asset. Please, try again.');
   }
+  return res.status(statusCode.CREATED).json({ message: 'Order created successfully.' });
 };
 
-const sellAssetController = async (req, res) => {
-  try {
-    const { codCliente, codAtivo, qtdeAtivo } = req.body;
+const getAssetByIdController = async (req, res) => {
+  const { id } = req.params;
 
-    const response = await assetTransactionService(codCliente, codAtivo, Number(qtdeAtivo), 'sell');
+  const asset = await getAssetByIdService(id);
 
-    if (!response) {
-      return res.status(statusCode.OK).json({ message: 'Not possible sell an asset. Please, try again.' });
-    }
-    return res.status(statusCode.OK).json({ message: 'Order completed successfully.' });
-  } catch (error) {
-    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  if (!asset) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
   }
+
+  const assetObj = {
+    codAtivo: asset.id,
+    qtdeAtivo: asset.quantity,
+    valor: asset.value,
+  };
+
+  return res.status(statusCode.OK).json(assetObj);
 };
 
-const assetByIdController = async (req, res) => {
-  try {
-    const { id } = req.params;
+const getAllAssetsController = async (_req, res) => {
+  const assets = await getAllAssetsService();
 
-    const response = await assetById(id);
-
-    if (!response) {
-      return res.status(statusCode.OK).json({ message: 'Asset not found. Please, try again.' });
-    }
-    return res.status(statusCode.OK).json({
-      codAtivo: response.id,
-      qtdeAtivo: response.quantity,
-      valor: response.value,
-    });
-  } catch (error) {
-    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  if (!assets) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Assets not found');
   }
+
+  return res.status(statusCode.OK).json(assets);
+};
+
+const setNewAssetController = async (req, res) => {
+  const newAsset = req.body;
+
+  const asset = await getAssetByCodeService(newAsset.code);
+
+  if (asset) {
+    throw new HttpException(statusCode.CONFLICT, 'Asset already registered');
+  }
+
+  const createAsset = await setNewAssetService(newAsset);
+
+  if (!createAsset) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Not possible create an asset. Please, try again.');
+  }
+
+  return res.status(statusCode.CREATED).json({ message: 'Asset created successfully' });
 };
 
 module.exports = {
-  buyAssetController,
-  sellAssetController,
-  assetByIdController,
+  setNewOrderController,
+  getAssetByIdController,
+  getAllAssetsController,
+  setNewAssetController,
 };
