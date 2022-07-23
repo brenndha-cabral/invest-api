@@ -10,8 +10,7 @@
 		},
 		"version": "1.0.0"
 	},
-	"servers": [
-		{
+	"servers": [{
 			"url": "http://localhost:3000",
 			"description": "API de desenvolvimento"
 		},
@@ -67,13 +66,12 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas diversas",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "Invalid email. Please enter a valid email address."
 										},
 										{
@@ -110,11 +108,9 @@
 				"tags": [
 					"Clientes"
 				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -122,31 +118,28 @@
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
-											"name": "Lewis Hamilton",
-											"email": "lewishamilton@gmail.com",
-											"cpf": "11111111111",
-											"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
-											"adm": true,
-											"balance": 1200.00,
-											"phone": "111111111111",
-											"address": "Avenue Regex, 576 NY",
-											"created": "2021-07-01T19:58:00.000Z"
-										}
-									]
+									"example": [{
+										"name": "Lewis Hamilton",
+										"email": "lewishamilton@gmail.com",
+										"cpf": "11111111111",
+										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+										"adm": true,
+										"balance": 1200.00,
+										"phone": "111111111111",
+										"address": "Avenue Regex, 576 NY",
+										"created": "2021-07-01T19:58:00.000Z"
+									}]
 								}
 							}
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas diversas",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "Invalid email. Please enter a valid email address."
 										},
 										{
@@ -164,13 +157,12 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas diversas",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "Token not found"
 										},
 										{
@@ -253,13 +245,12 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas diversas",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "'name' is required"
 										},
 										{
@@ -364,19 +355,15 @@
 				"tags": [
 					"Clientes"
 				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"type": "string",
-						"required": true
-					}
-				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -400,13 +387,12 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas diversas",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "Token not found"
 										},
 										{
@@ -423,10 +409,9 @@
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example":
-										{
-											"message": "Client not found. Please, try again."
-										}
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
 								}
 							}
 						}
@@ -452,19 +437,15 @@
 				"tags": [
 					"Clientes"
 				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"type": "string",
-						"required": true
-					}
-				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -480,13 +461,12 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas diversas",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
-										{
+									"example": [{
 											"message": "Token not found"
 										},
 										{
@@ -503,10 +483,9 @@
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example":
-										{
-											"message": "Client not found. Please, try again."
-										}
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
 								}
 							}
 						}
@@ -534,11 +513,9 @@
 				"tags": [
 					"Ativos"
 				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -546,28 +523,56 @@
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": [
+									"example": [{
+										"id": 1,
+										"name": "Vale",
+										"code": "VALE3",
+										"quantity": 300,
+										"value": "18.50",
+										"created": "2021-07-01T19:58:00.000Z"
+									}]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
 										{
-											"id": 1,
-											"name": "Vale",
-											"code": "VALE3",
-											"quantity": 300,
-											"value": "18.50",
-											"created": "2021-07-01T19:58:00.000Z"
+											"message": "Token invalid"
 										}
 									]
 								}
 							}
 						}
 					},
-					"500": {
-						"description": "Unexpected error. Please try again",
+					"404": {
+						"description": "Not Found",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
 									"example": {
-										"message": "Unexpected error. Please try again"
+										"message": "Assets not found"
+									}
+								}
+							}
+						},
+						"500": {
+							"description": "Unexpected error. Please try again",
+							"content": {
+								"application/json": {
+									"schema": {
+										"type": "object",
+										"example": {
+											"message": "Unexpected error. Please try again"
+										}
 									}
 								}
 							}
@@ -627,8 +632,51 @@
 							}
 						}
 					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Unauthorized",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not authorized to add new asset. Only admins can add new assets."
+									}
+								}
+							}
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Asset already registered"
+									}
+								}
+							}
+						}
+					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Not possible create an asset. Please try again",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -650,19 +698,15 @@
 				"tags": [
 					"Ativos"
 				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"type": "string",
-						"required": true
-					}
-				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -674,6 +718,36 @@
 										"codAtivo": 1,
 										"qtdeAtivo": 300,
 										"valor": "18.50"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Asset not found. Please, try again."
 									}
 								}
 							}
@@ -700,19 +774,15 @@
 				"tags": [
 					"Ativos"
 				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"type": "string",
-						"required": true
-					}
-				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"responses": {
 					"200": {
 						"description": "OK",
@@ -722,6 +792,104 @@
 									"type": "object",
 									"example": {
 										"message": "Asset Successfully deleted"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ativos/clientes/{id}": {
+			"get": {
+				"summary": "Retorna o ativo pelo id",
+				"description": "Esta rota irá retornar o ativo pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Ativos"
+				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"codClient": 1,
+										"wallet": [{
+											"codAtivo": null,
+											"qtdeAtivo": 78,
+											"valor": 28.71
+										}]
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not found. Please, try again."
 									}
 								}
 							}
@@ -750,11 +918,9 @@
 				"tags": [
 					"Investimentos"
 				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -788,14 +954,70 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": {
-										"message": "Invalid fields"
-									}
+									"example": [{
+											"message": "'codCliente' is required."
+										},
+										{
+											"message": "'codCliente' must be a number."
+										},
+										{
+											"message": "'codAtivo' is required."
+										},
+										{
+											"message": "'codAtivo' must be a number."
+										},
+										{
+											"message": "'qtdeAtivo' is required."
+										},
+										{
+											"message": "'qtdeAtivo' must be a number."
+										},
+										{
+											"message": "Asset quantity must be less or equal the available. Please, try again."
+										},
+										{
+											"message": "Client does not have sufficient balance for the transaction. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Client not found. Please, try again."
+										},
+										{
+											"message": "Asset not found. Please, try again."
+										}
+									]
 								}
 							}
 						}
@@ -807,7 +1029,7 @@
 								"schema": {
 									"type": "object",
 									"example": {
-										"message": "Unexpected error. Please try again"
+										"message": "Unable to trade an asset. Please, try again."
 									}
 								}
 							}
@@ -823,11 +1045,9 @@
 				"tags": [
 					"Investimentos"
 				],
-				"security": [
-					{
-						"bearerAuth": []
-					}
-				],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -861,13 +1081,369 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "'codCliente' is required."
+										},
+										{
+											"message": "'codCliente' must be a number."
+										},
+										{
+											"message": "'codAtivo' is required."
+										},
+										{
+											"message": "'codAtivo' must be a number."
+										},
+										{
+											"message": "'qtdeAtivo' is required."
+										},
+										{
+											"message": "'qtdeAtivo' must be a number."
+										},
+										{
+											"message": "Asset quantity must be less or equal the available or client does not have this asset. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Client not found. Please, try again."
+										},
+										{
+											"message": "Asset not found. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
 									"example": {
-										"message": "Invalid fields"
+										"message": "Unable to trade an asset. Please, try again."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/conta/deposito": {
+			"post": {
+				"summary": "Deposita um valor na conta do usuário",
+				"description": "Esta rota irá permitir que se adiciona saldo na conta do usuário",
+				"tags": [
+					"Conta"
+				],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Conta"
+							},
+							"examples": {
+								"login": {
+									"value": {
+										"codCliente": 1,
+										"valor": 1000.00
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Balance updated successfully."
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "'codCliente' is required."
+										},
+										{
+											"message": "'codCliente' must be a number."
+										},
+										{
+											"message": "'valor' is required."
+										},
+										{
+											"message": "'valor' must be a number."
+										},
+										{
+											"message": "Value must be greater then zero. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Not possible update balance. Please, try again."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/conta/saque": {
+			"post": {
+				"summary": "Saca um valor da conta do usuário",
+				"description": "Esta rota irá permitir que se remova saldo da conta do usuário",
+				"tags": [
+					"Conta"
+				],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Conta"
+							},
+							"examples": {
+								"login": {
+									"value": {
+										"codCliente": 1,
+										"valor": 1000.00
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Balance updated successfully."
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "'codCliente' is required."
+										},
+										{
+											"message": "'codCliente' must be a number."
+										},
+										{
+											"message": "'valor' is required."
+										},
+										{
+											"message": "'valor' must be a number."
+										},
+										{
+											"message": "Value must be greater then zero and available in balance. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Not possible update balance. Please, try again."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/conta/{id}": {
+			"get": {
+				"summary": "Verifica o saldo da conta do usuário",
+				"description": "Esta rota irá permitir que se verifique o saldo da conta do usuário",
+				"tags": [
+					"Conta"
+				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"codCliente": 1,
+										"saldo": 200
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Balance not found. Please, try again."
 									}
 								}
 							}
@@ -975,6 +1551,19 @@
 						"required": true
 					},
 					"qtdeAtivo": {
+						"type": "number",
+						"required": true
+					}
+				}
+			},
+			"Conta": {
+				"type": "object",
+				"properties": {
+					"codCliente": {
+						"type": "number",
+						"required": true
+					},
+					"valor": {
 						"type": "number",
 						"required": true
 					}
