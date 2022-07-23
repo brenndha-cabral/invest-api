@@ -1,5 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
+    clientId: DataTypes.NUMBER,
+    assetId: DataTypes.NUMBER,
     quantity: DataTypes.NUMBER,
     value: DataTypes.DECIMAL(10, 2),
     type: DataTypes.ENUM('buy', 'sell'),
@@ -14,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     models.Asset.belongsToMany(models.Client, {
       as: 'clients',
       through: Order,
-      foreignKey: 'asset_id',
-      otherKey: 'client_id',
+      foreignKey: 'assetId',
+      otherKey: 'clientId',
     });
     models.Client.belongsToMany(models.Asset, {
       as: 'assets',
       through: Order,
-      foreignKey: 'client_id',
-      otherKey: 'asset_id',
+      foreignKey: 'clientId',
+      otherKey: 'assetId',
     });
   };
 
