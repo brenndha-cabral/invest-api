@@ -18,7 +18,7 @@ const generateToken = ({ id, name, adm }) => {
   }
 };
 
-const authToken = async (token) => {
+const authToken = (token) => {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {
