@@ -19,7 +19,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       image: {
+        allowNull: false,
         type: Sequelize.STRING,
+        defaultValue: 'https://www.buritama.sp.leg.br/imagens/parlamentares-2013-2016/sem-foto.jpg/image',
       },
       adm: {
         allowNull: false,
