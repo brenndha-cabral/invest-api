@@ -1,24 +1,20 @@
-const { balanceUpdateService } = require('../services/balanceService');
+const { setBalanceUpdateService } = require('../services/balanceService');
 const { HttpException } = require('../utils/httpException');
-const { statusCode, statusResponse } = require('../utils/httpStatus');
+const { statusCode } = require('../utils/httpStatus');
 
-const balanceUpdateController = async (req, res) => {
-  try {
-    const { codCliente, valor } = req.body;
+const setBalanceUpdateController = async (req, res) => {
+  const { codCliente, valor } = req.body;
 
-    const { path } = req;
+  const { path } = req;
 
-    const response = await balanceUpdateService(codCliente, valor, path);
+  const balance = await setBalanceUpdateService(codCliente, valor, path);
 
-    if (!response) {
-      return res.status(statusCode.BAD_REQUEST).json({ message: 'Not possible update balance. Please, try again.' });
-    }
-    return res.status(statusCode.CREATED).json({ message: 'Balance updated successfully.' });
-  } catch (error) {
-    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, statusResponse.INTERNAL_SERVER_ERROR);
+  if (!balance) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Not possible update balance. Please, try again.');
   }
+  return res.status(statusCode.CREATED).json({ message: 'Balance updated successfully.' });
 };
 
 module.exports = {
-  balanceUpdateController,
+  setBalanceUpdateController,
 };
