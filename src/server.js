@@ -22,3 +22,7 @@ app.use('/', routes);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => console.log('Listening at', PORT));
+
+module.exports = {
+  app,
+};
