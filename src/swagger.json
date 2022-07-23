@@ -141,8 +141,8 @@
     },
     "/clientes/{id}": {
       "get": {
-        "summary": "Lista todos os clientes",
-        "description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
+        "summary": "Retorna o cliente pelo id",
+        "description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
         "tags": ["Clientes"],
         "parameters": [
           {
