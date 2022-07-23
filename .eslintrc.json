@@ -6,7 +6,7 @@
     "es2021": true,
     "jest": false
   },
-  "extends": ["airbnb-base", "plugin:import/recommended"],
+  "extends": ["airbnb-base"],
   "rules": {
     "indent": ["error", 2],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
