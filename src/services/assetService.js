@@ -7,30 +7,35 @@ const config = require('../database/config/config')[env];
 
 const sequelize = new Sequelize(config);
 
-const assetTransactionService = async (codCliente, codAtivo, qtdeAtivo, type) => {
-  const { dataValues } = await Asset.findOne({
+const buyOrSellAssetService = async (codCliente, codAtivo, qtdeAtivo, path) => {
+  const asset = await Asset.findOne({
     where: { id: codAtivo },
   });
 
   let newQuantity;
+  let type;
 
-  if (type === 'buy') {
-    newQuantity = dataValues.quantity - qtdeAtivo;
+  if (path === '/comprar') {
+    newQuantity = Number(asset.quantity) - Number(qtdeAtivo);
+    type = 'buy';
   } else {
-    newQuantity = dataValues.quantity + qtdeAtivo;
+    newQuantity = Number(asset.qtdeAtivo) + Number(qtdeAtivo);
+    type = 'sell';
   }
 
-  const response = await sequelize.transaction(async (t) => {
+  const newOrder = await sequelize.transaction(async (t) => {
     const order = await Order.create({
       clientId: codCliente,
       assetId: codAtivo,
       quantity: qtdeAtivo,
       type,
-      value: dataValues.value,
+      value: asset.value,
     }, { transaction: t });
 
     await Asset.update(
-      { quantity: newQuantity },
+      {
+        quantity: newQuantity,
+      },
       { where: { id: codAtivo } },
       { transaction: t },
     );
@@ -38,23 +43,63 @@ const assetTransactionService = async (codCliente, codAtivo, qtdeAtivo, type) =>
     return order;
   });
 
-  return response;
+  return newOrder;
 };
 
-const assetById = async (id) => {
-  const response = await Asset.findOne({
+const getAssetByIdService = async (id) => {
+  const asset = await Asset.findOne({
     attributes: ['id', 'quantity', 'value'],
     where: { id },
   });
 
-  if (!response) {
+  if (!asset) {
     return null;
   }
 
-  return response;
+  return asset;
+};
+
+const getAllAssetsService = async () => {
+  const assets = await Asset.findAll();
+  if (assets) {
+    return assets;
+  }
+
+  return null;
+};
+
+const getAssetByCodeService = async (code) => {
+  const asset = await Asset.findOne({
+    where: { code },
+  });
+
+  if (asset) {
+    return asset;
+  }
+
+  return null;
+};
+
+const setNewAssetService = async ({
+  name, code, quantity, value,
+}) => {
+  const response = await Asset.create(
+    {
+      name, code, quantity, value,
+    },
+  );
+
+  if (response) {
+    return response.dataValues.id;
+  }
+
+  return null;
 };
 
 module.exports = {
-  assetTransactionService,
-  assetById,
+  buyOrSellAssetService,
+  getAssetByIdService,
+  getAllAssetsService,
+  setNewAssetService,
+  getAssetByCodeService,
 };
