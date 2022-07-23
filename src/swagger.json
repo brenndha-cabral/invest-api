@@ -144,6 +144,14 @@
         "summary": "Lista todos os clientes",
         "description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
         "tags": ["Clientes"],
+        "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "type": "string",
+          "required": true
+        }
+      ],
         "security": [{
           "bearerAuth": []
         }],
