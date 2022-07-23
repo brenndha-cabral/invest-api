@@ -1,223 +1,994 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "API de Investimentos",
-    "description": "Esta aplicação tem como objetivo gerenciar investimentos em ações, com algumas funcionalidades de conta digital.",
-    "contact": {
-      "name": "Brenndha Cabral",
-      "url": "https://github.com/brenndha-cabral",
-      "email": "brenndha.cabral@yahoo.com"
-    },
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://localhost:3000",
-      "description": "API de desenvolvimento"
-    },
-    {
-      "url": "https://bc-invest-api.herokuapp.com",
-      "description": "API de produção"
-    }
-  ],
-  "securityDefinitions": {
-    "Bearer": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header"
-    }
-  },
-  "paths": {
-    "/login": {
-      "post": {
-        "summary": "Login para acessar a aplicação",
-        "description": "Esta rota irá permitir que a pessoa usuária faça login para ter acesso a aplicação.",
-        "tags": ["Login"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Login"
-              },
-              "examples": {
-                "login": {
-                  "value": {
-                    "email": "lewishamilton@gmail.com",
-                    "password": "123456"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Invalid fields"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Internal Server Error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clientes": {
-      "get": {
-        "summary": "Lista todos os clientes",
-        "description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
-        "tags": ["Clientes"],
-        "security": [{
-          "bearerAuth": []
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": [{
-                    "name": "Lewis Hamilton",
-                    "email": "lewishamilton@gmail.com",
-                    "cpf": "11111111111",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
-                    "adm": true,
-                    "balance": 1200.00,
-                    "phone": "111111111111",
-                    "address": "Avenue Regex, 576 NY",
-                    "created": "2021-07-01T19:58:00.000Z"
-                  }]
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Internal Server Error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clientes/{id}": {
-      "get": {
-        "summary": "Retorna o cliente pelo id",
-        "description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
-        "tags": ["Clientes"],
-        "parameters": [
-          {
-          "in": "path",
-          "name": "id",
-          "type": "string",
-          "required": true
-        }
-      ],
-        "security": [{
-          "bearerAuth": []
-        }],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "name": "Lewis Hamilton",
-                    "email": "lewishamilton@gmail.com",
-                    "cpf": "11111111111",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
-                    "adm": true,
-                    "balance": 1200.00,
-                    "phone": "111111111111",
-                    "address": "Avenue Regex, 576 NY",
-                    "created": "2021-07-01T19:58:00.000Z"
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Internal Server Error"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Login": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "required": true
-          },
-          "password": {
-            "type": "string",
-            "required": true
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "in": "header",
-        "value": "Inset token here",
-        "bearerFormat": "JWT"
-      }
-    }
-  }
+	"openapi": "3.0.0",
+	"info": {
+		"title": "API de Investimentos",
+		"description": "Esta aplicação tem como objetivo gerenciar investimentos em ações, com algumas funcionalidades de conta digital.",
+		"contact": {
+			"name": "Brenndha Cabral",
+			"url": "https://github.com/brenndha-cabral",
+			"email": "brenndha.cabral@yahoo.com"
+		},
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:3000",
+			"description": "API de desenvolvimento"
+		},
+		{
+			"url": "https://bc-invest-api.herokuapp.com",
+			"description": "API de produção"
+		}
+	],
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header"
+		}
+	},
+	"paths": {
+		"/login": {
+			"post": {
+				"summary": "Login para acessar a aplicação",
+				"description": "Esta rota irá permitir que a pessoa usuária faça login para ter acesso a aplicação.",
+				"tags": [
+					"Login"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Login"
+							},
+							"examples": {
+								"login": {
+									"value": {
+										"email": "lewishamilton@gmail.com",
+										"password": "123456"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "Invalid email. Please enter a valid email address."
+										},
+										{
+											"message": "The password must be at least 6 digits long. Please enter a valid password."
+										},
+										{
+											"message": "Invalid credentials. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unable to login. Please, try again."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/clientes": {
+			"get": {
+				"summary": "Lista todos os clientes",
+				"description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Clientes"
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"name": "Lewis Hamilton",
+											"email": "lewishamilton@gmail.com",
+											"cpf": "11111111111",
+											"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+											"adm": true,
+											"balance": 1200.00,
+											"phone": "111111111111",
+											"address": "Avenue Regex, 576 NY",
+											"created": "2021-07-01T19:58:00.000Z"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "Invalid email. Please enter a valid email address."
+										},
+										{
+											"message": "The password must be at least 6 digits long. Please enter a valid password."
+										},
+										{
+											"message": "Invalid credentials. Please, try again."
+										},
+										{
+											"message": "Unable to login. Please, try again."
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Clients not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Insere um novo cliente",
+				"description": "Esta rota irá inserir um novo cliente",
+				"tags": [
+					"Clientes"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Criar Cliente"
+							},
+							"examples": {
+								"client": {
+									"value": {
+										"name": "Lewis Hamilton",
+										"email": "lewishamilton@gmail.com",
+										"password": "123456",
+										"confirmPassword": "123456",
+										"cpf": "11111111111",
+										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+										"phone": "111111111111",
+										"address": "Avenue Regex, 576 NY"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6Ikxld2lzIEhhbWlsdG9uIiwiYWRtIjp0cnVlLCJpYXQiOjE2NTg0NDAyMjIsImV4cCI6MTY1ODQ2MTgyMn0.2SP8SCEe5EcuTNbM58Xy4t80HzpGEKZwoavbrS8IAsI"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "'name' is required"
+										},
+										{
+											"message": "'name' must be a string"
+										},
+										{
+											"message": "'name' length must be at least 3 characters long"
+										},
+										{
+											"message": "'email' is required"
+										},
+										{
+											"message": "'email' must be a email"
+										},
+										{
+											"message": "'password' is required"
+										},
+										{
+											"message": "'password' length must be at least 6 characters long"
+										},
+										{
+											"message": "'confirmPassword' is required"
+										},
+										{
+											"message": "'cpf' is required"
+										},
+										{
+											"message": "'cpf' must be a string"
+										},
+										{
+											"message": "'cpf' length must be at 11 characters long"
+										},
+										{
+											"message": "'image' must be a string"
+										},
+										{
+											"message": "'phone' is required"
+										},
+										{
+											"message": "'phone' must be a string"
+										},
+										{
+											"message": "'phone' length must be at 12 characters long"
+										},
+										{
+											"message": "'address' is required"
+										},
+										{
+											"message": "'address' must be a string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client already registered."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/clientes/{id}": {
+			"get": {
+				"summary": "Retorna o cliente pelo id",
+				"description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Clientes"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "string",
+						"required": true
+					}
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"name": "Lewis Hamilton",
+										"email": "lewishamilton@gmail.com",
+										"cpf": "11111111111",
+										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+										"adm": true,
+										"balance": 1200.00,
+										"phone": "111111111111",
+										"address": "Avenue Regex, 576 NY",
+										"created": "2021-07-01T19:58:00.000Z"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example":
+										{
+											"message": "Client not found. Please, try again."
+										}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Remove o cliente pelo id",
+				"description": "Esta rota irá remover o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Clientes"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "string",
+						"required": true
+					}
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "User Successfully deleted"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas diversas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example":
+										{
+											"message": "Client not found. Please, try again."
+										}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ativos": {
+			"get": {
+				"summary": "Lista todos os ativos",
+				"description": "Esta rota irá listar todos os ativos, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Ativos"
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [
+										{
+											"id": 1,
+											"name": "Vale",
+											"code": "VALE3",
+											"quantity": 300,
+											"value": "18.50",
+											"created": "2021-07-01T19:58:00.000Z"
+										}
+									]
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Insere um novo ativo",
+				"description": "Esta rota irá inserir um novo ativo",
+				"tags": [
+					"Ativos"
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Criar Ativo"
+							},
+							"examples": {
+								"asset": {
+									"value": {
+										"name": "Vale",
+										"code": "VALE3",
+										"quantity": 300,
+										"value": "18.50"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Asset created successfully"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Invalid fields"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ativos/{id}": {
+			"get": {
+				"summary": "Retorna o ativo pelo id",
+				"description": "Esta rota irá retornar o ativo pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Ativos"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "string",
+						"required": true
+					}
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"codAtivo": 1,
+										"qtdeAtivo": 300,
+										"valor": "18.50"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"summary": "Remove o ativo pelo id",
+				"description": "Esta rota irá remover o ativo pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Ativos"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "string",
+						"required": true
+					}
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Asset Successfully deleted"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/investimentos/comprar": {
+			"post": {
+				"summary": "Insere um nova ordem de compra",
+				"description": "Esta rota irá criar uma nova ordem de compra",
+				"tags": [
+					"Investimentos"
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Investimento"
+							},
+							"examples": {
+								"order": {
+									"value": {
+										"codCliente": 1,
+										"codAtivo": 6,
+										"qtdeAtivo": 12
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Order created successfully."
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Invalid fields"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/investimentos/vender": {
+			"post": {
+				"summary": "Insere um nova ordem de venda",
+				"description": "Esta rota irá criar uma nova ordem de venda",
+				"tags": [
+					"Investimentos"
+				],
+				"security": [
+					{
+						"bearerAuth": []
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Investimento"
+							},
+							"examples": {
+								"order": {
+									"value": {
+										"codCliente": 1,
+										"codAtivo": 6,
+										"qtdeAtivo": 12
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Order created successfully."
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Invalid fields"
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Unexpected error. Please try again",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Login": {
+				"type": "object",
+				"properties": {
+					"email": {
+						"type": "string",
+						"required": true
+					},
+					"password": {
+						"type": "string",
+						"required": true
+					}
+				}
+			},
+			"Criar Cliente": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"required": true
+					},
+					"email": {
+						"type": "string",
+						"required": true
+					},
+					"password": {
+						"type": "string",
+						"required": true
+					},
+					"confirmPassword": {
+						"type": "string",
+						"required": true
+					},
+					"cpf": {
+						"type": "string",
+						"required": true
+					},
+					"image": {
+						"type": "string",
+						"required": true
+					},
+					"phone": {
+						"type": "string",
+						"required": true
+					},
+					"address": {
+						"type": "string",
+						"required": true
+					}
+				}
+			},
+			"Criar Ativo": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string",
+						"required": true
+					},
+					"code": {
+						"type": "string",
+						"required": true
+					},
+					"quantity": {
+						"type": "number",
+						"required": true
+					},
+					"value": {
+						"type": "number",
+						"required": true
+					}
+				}
+			},
+			"Investimento": {
+				"type": "object",
+				"properties": {
+					"codCliente": {
+						"type": "number",
+						"required": true
+					},
+					"codAtivo": {
+						"type": "number",
+						"required": true
+					},
+					"qtdeAtivo": {
+						"type": "number",
+						"required": true
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"bearerAuth": {
+				"type": "http",
+				"scheme": "bearer",
+				"in": "header",
+				"value": "Inset token here",
+				"bearerFormat": "JWT"
+			}
+		}
+	}
 }
