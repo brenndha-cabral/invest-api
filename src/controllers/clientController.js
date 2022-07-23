@@ -38,7 +38,7 @@ const getBalanceByIdController = async (req, res) => {
 const getAllClientsController = async (req, res) => {
   const clients = await getAllClientsService();
 
-  if (!clients) {
+  if (!clients.length > 0) {
     throw new HttpException(statusCode.NOT_FOUND, 'Clients not found. Please, try again.');
   }
 

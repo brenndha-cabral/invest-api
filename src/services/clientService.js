@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const { calculateAllCustodyHelper } = require('../utils/calculateCustody');
 const { generateToken } = require('../utils/jwt');
 const { Client } = require('../database/models');
@@ -33,6 +34,7 @@ const getBalanceByIdService = async (id) => {
 const getAllClientsService = async () => {
   const clients = await Client.findAll({
     attributes: { exclude: ['password'] },
+    where: { adm: false },
   });
 
   if (clients) {
@@ -71,8 +73,12 @@ const getClientByEmailService = async (email) => {
 const setNewClientService = async ({
   name, email, password, image, cpf, phone, address,
 }) => {
+  const salt = bcrypt.genSaltSync(10);
+
+  const passwordHash = bcrypt.hashSync(password, salt);
+
   const client = await Client.create({
-    name, email, password, image, cpf, phone, address,
+    name, email, password: passwordHash, image, cpf, phone, address,
   });
 
   const jwt = {
