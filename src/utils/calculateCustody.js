@@ -1,7 +1,7 @@
 const sequelize = require('sequelize');
 const { Order } = require('../database/models/index');
 
-const calculateCustodyById = async (clientId, assetId) => {
+const calculateCustodyByIdHelper = async (clientId, assetId) => {
   let [buyOrders, sellOrders] = await Order.findAll({
     attributes: ['type', [sequelize.fn('sum', sequelize.col('quantity')), 'quantity']],
     where: { clientId, assetId },
@@ -16,14 +16,14 @@ const calculateCustodyById = async (clientId, assetId) => {
   return quantityAvailable;
 };
 
-const calculateAllCustody = async (clientId) => {
-  const response = await Order.findAll({
+const calculateAllCustodyHelper = async (clientId) => {
+  const order = await Order.findAll({
     attributes: ['type', 'asset_id', 'value', [sequelize.fn('sum', sequelize.col('quantity')), 'quantity']],
     where: { client_id: clientId },
     group: ['asset_id', 'type', 'value'],
   });
 
-  const assetCustody = response.reduce((acc, curr) => {
+  const assetCustody = order.reduce((acc, curr) => {
     let qtd;
 
     if (acc[curr.asset_id]) {
@@ -81,6 +81,6 @@ const calculateAllCustody = async (clientId) => {
 };
 
 module.exports = {
-  calculateCustodyById,
-  calculateAllCustody,
+  calculateCustodyByIdHelper,
+  calculateAllCustodyHelper,
 };
