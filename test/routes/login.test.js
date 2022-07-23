@@ -5,7 +5,7 @@ const { statusCode } = require("../../src/utils/httpStatus");
 
 chai.use(chaiHttp);
 
-describe.only('Verifica se a rota Login executa corretamente', () => {
+describe('Verifica se a rota `login` executa corretamente', () => {
   it('Verifica se faz o login feito corretamente retorna um token', async () => {
     const data = {
       email: 'lewishamilton@gmail.com',
@@ -20,7 +20,7 @@ describe.only('Verifica se a rota Login executa corretamente', () => {
     chai.expect(response.body).to.be.an('object').to.be.have.property('token');
   });
 
-  it('Verifica se retorna um erro caso a pessoa não passe um email válido, retorna', async () => {
+  it('Verifica se a pessoa não passa um email válido, retorna um erro com a mensagem `Invalid email. Please enter a valid email address.`', async () => {
     const data = {
       password: '123456' 
     }
@@ -33,7 +33,7 @@ describe.only('Verifica se a rota Login executa corretamente', () => {
     chai.expect(response.body.message).to.be.eq('Invalid email. Please enter a valid email address.');
   });
 
-  it('Verifica se retorna um erro caso a pessoa não passe uma senha válida, retorna', async () => {
+  it('Verifica se a pessoa não passe uma senha válida, retorna um erro com a mensagem retorna a mensagem `The password must be at least 6 digits long. Please enter a valid password.`', async () => {
     const data = {
       email: 'lewishamilton@gmail.com', 
     }
@@ -48,7 +48,7 @@ describe.only('Verifica se a rota Login executa corretamente', () => {
     chai.expect(response.body.message).to.be.eq('The password must be at least 6 digits long. Please enter a valid password.');
   });
 
-  it('Verifica se retorna um erro caso a pessoa não tenha a pessoa cliente cadastrada, retorna', async () => {
+  it('Verifica se a pessoa não é cliente, retorna um erro com a mensagem `Invalid credentials. Please, try again.`', async () => {
     const data = {
       email: 'regexdasilva@gmail.com',
       password: '123488856' 
