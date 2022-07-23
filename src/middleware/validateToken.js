@@ -9,7 +9,9 @@ const validateToken = (req, _res, next) => {
     throw new HttpException(statusCode.UNAUTHORIZED, 'Token not found');
   }
 
-  const client = authToken(token);
+  const [, clientToken] = token.split(' ');
+
+  const client = authToken(clientToken);
 
   if (client) {
     return next();
