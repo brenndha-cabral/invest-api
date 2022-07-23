@@ -12,7 +12,7 @@ const setNewOrderController = async (req, res) => {
   const { codCliente, codAtivo, qtdeAtivo } = req.body;
   const { path } = req;
 
-  const order = await buyOrSellAssetService(codCliente, codAtivo, Number(qtdeAtivo), path);
+  const order = await buyOrSellAssetService(codCliente, codAtivo, qtdeAtivo, path);
 
   if (!order) {
     throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Unable to trade an asset. Please, try again.');

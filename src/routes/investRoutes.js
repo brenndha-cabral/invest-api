@@ -13,6 +13,6 @@ const { setNewOrderController } = require('../controllers/assetControllers');
 const router = express.Router();
 
 router.post('/comprar', validateFieldsInvest, validateRulesInvest, validateClientById, validateBuyAsset, setNewOrderController);
-router.post('/vender', validateFieldsInvest, validateRulesInvest, validateSellAsset, setNewOrderController);
+router.post('/vender', validateFieldsInvest, validateRulesInvest, validateClientById, validateSellAsset, setNewOrderController);
 
 module.exports = router;

@@ -19,7 +19,7 @@ const buyOrSellAssetService = async (codCliente, codAtivo, qtdeAtivo, path) => {
     newQuantity = Number(asset.quantity) - Number(qtdeAtivo);
     type = 'buy';
   } else {
-    newQuantity = Number(asset.qtdeAtivo) + Number(qtdeAtivo);
+    newQuantity = Number(asset.quantity) + Number(qtdeAtivo);
     type = 'sell';
   }
 
