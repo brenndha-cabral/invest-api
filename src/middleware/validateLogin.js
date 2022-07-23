@@ -10,7 +10,7 @@ const validateFieldsLogin = [
     .isLength({ min: 6 })
     .withMessage('The password must be at least 6 digits long. Please enter a valid password.'),
 ];
-const validateRulesLogin = (req, res, next) => {
+const validateRulesLogin = (req, _res, next) => {
   const errors = validationResult(req);
 
   const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
