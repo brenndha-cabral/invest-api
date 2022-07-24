@@ -40,9 +40,6 @@ const validateFieldsNewClient = [
     .withMessage('"cpf" must be a string')
     .isLength(11)
     .withMessage('"cpf" length must be at 11 characters long'),
-  check('image')
-    .isString()
-    .withMessage('"image" must be a string'),
   check('phone')
     .exists()
     .withMessage('"phone" is required')
