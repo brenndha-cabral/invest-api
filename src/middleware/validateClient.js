@@ -3,6 +3,7 @@ const { HttpException } = require('../utils/httpException');
 const { statusCode } = require('../utils/httpStatus');
 const { Client } = require('../database/models/index');
 const { authToken } = require('../utils/jwt');
+const { getClientByIdService } = require('../services/clientService');
 
 const validateFieldsNewClient = [
   check('name')
@@ -78,7 +79,7 @@ const validateClientById = async (req, _res, next) => {
   });
 
   if (!client) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Client not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   return next();
@@ -87,7 +88,9 @@ const validateClientById = async (req, _res, next) => {
 const validateClientIsAdm = async (req, _res, next) => {
   const token = req.headers.authorization;
 
-  const client = authToken(token);
+  const [, clientToken] = token.split(' ');
+
+  const client = authToken(clientToken);
 
   if (client.adm !== true) {
     throw new HttpException(statusCode.UNAUTHORIZED, 'Client not authorized to add new asset. Only admins can add new assets.');
@@ -124,6 +127,21 @@ const validateClientLogin = async (req, _res, next) => {
   return next();
 };
 
+const validateClientDelete = async (req, _res, next) => {
+  const { id } = req.params;
+  const token = req.headers.authorization;
+
+  const client = await getClientByIdService(id);
+
+  const clientToken = authToken(token);
+
+  if (clientToken.adm !== true || clientToken.id !== id || clientToken.id !== client.id) {
+    throw new HttpException(statusCode.BAD_REQUEST, 'Not authorized to delete this client. Only admins or the same client can delete itself.');
+  }
+
+  return next();
+};
+
 module.exports = {
   validateFieldsNewClient,
   validateRulesClient,
@@ -131,4 +149,5 @@ module.exports = {
   validateClientByEmail,
   validateClientById,
   validateClientLogin,
+  validateClientDelete,
 };
