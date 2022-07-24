@@ -118,9 +118,9 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - `npm install`: Irá instalar todas as dependências;
 
-- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders no `invest_api_db`;
+- `npm run prestart`: Irá rodar os comandos para gerar as migrations e seeders no `invest_api_db`;
 
-- `npm dev`: Irá rodar a aplicação na porta `3000` pelo `nodemon`, ou adapte o docker-compose e o `.env` caso sinta necessidade.
+- `npm run dev`: Irá rodar a aplicação na porta `3000` pelo `nodemon`, ou adapte o docker-compose e o `.env` caso sinta necessidade.
 
 
 ### 👉 Sem Docker
@@ -129,7 +129,7 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 > :information_source: Instale as dependências com `npm install`.
 
-> :information_source: Rode a aplicação com `npm dev` na porta `3000` pelo `nodemon`, ou adapte o `.env` caso sinta necessidade.
+> :information_source: Rode a aplicação com `npm run dev` na porta `3000` pelo `nodemon`, ou adapte o `.env` caso sinta necessidade.
 
 </details>
 
@@ -151,7 +151,7 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - `npm run test:mocha`: Irá rodar todos os testes unitários e de integração da aplicação e apresentará um relatório de cobertura;
 
-- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders;
+- `npm run prestart`: Irá rodar os comandos para gerar as migrations e seeders;
 
 - `npm run start`: Irá rodar a aplicação (automaticamente irá rodar o `npm run prestart`);
 
