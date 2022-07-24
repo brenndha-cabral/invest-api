@@ -21,9 +21,6 @@ const validateRulesBalance = (req, res, next) => {
   if (!errors.isEmpty()) {
     const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
 
-    if (errorMessage.includes('required')) {
-      throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
-    }
     throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
   }
   return next();
@@ -37,7 +34,7 @@ const validateBalanceDeposit = async (req, _res, next) => {
   });
 
   if (!client) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Client not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   if (valor <= 0) {
@@ -55,7 +52,7 @@ const validateBalanceWithdraw = async (req, _res, next) => {
   });
 
   if (!client) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Client not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   if (Number(valor) > client.dataValues.balance || valor <= 0) {
@@ -73,7 +70,7 @@ const validateHasBalance = async (req, _res, next) => {
   });
 
   if (!client) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Client not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   if (Number(valor) > client.dataValues.balance || valor <= 0) {
