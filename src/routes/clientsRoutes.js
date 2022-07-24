@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  setNewUserController,
+  setNewClientController,
   setUpdateUserController,
   getClientByIdController,
   getAllClientsController,
@@ -18,7 +18,7 @@ const router = express.Router();
 
 router.get('/', validateToken, getAllClientsController);
 router.get('/:id', validateToken, getClientByIdController);
-router.post('/', validateFieldsNewClient, validateRulesClient, validateClientByEmail, setNewUserController);
+router.post('/', validateFieldsNewClient, validateRulesClient, validateClientByEmail, setNewClientController);
 router.put('/:id', validateToken, validateFieldsNewClient, validateRulesClient, setUpdateUserController);
 router.delete('/:id', validateToken, validateClientDelete, deleteClientController);
 
