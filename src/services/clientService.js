@@ -49,7 +49,7 @@ const getAllClientsService = async () => {
 const getClientByIdService = async (id) => {
   const client = await Client.findOne({
     attributes: { exclude: ['password'] },
-    where: { id, adm: false },
+    where: { id },
   });
 
   if (client) {
