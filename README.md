@@ -160,7 +160,11 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 <h2 id="testes">Testes</h2>
 
-> :information_source:
+> :information_source: Foram realizados testes de integração com `Mocha` e `Chai` para atingir a cobertura mínima de 80%.
+
+<div align="center">
+    <img src="./public/assets/images/tests.jpeg" alt="Relatório de cobertura de testes" width="1000">
+</div>
 
 <h2 id="der">Diagrama Entidade Relacionamento</h2>
 
