@@ -10,15 +10,15 @@
 		},
 		"version": "1.0.0"
 	},
-	"servers": [{
-			"url": "http://localhost:3000",
-			"description": "API de desenvolvimento"
-		},
+	"servers": [
 		{
 			"url": "https://bc-invest-api.herokuapp.com",
 			"description": "API de produção"
-		}
-	],
+		},
+		{ 
+		"url": "http://localhost:3000",
+		"description": "API de desenvolvimento"
+	}],
 	"securityDefinitions": {
 		"Bearer": {
 			"type": "apiKey",
@@ -66,7 +66,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -86,7 +86,7 @@
 						}
 					},
 					"500": {
-						"description": "Internal Server Error | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Internal Server Error | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -116,51 +116,28 @@
 				}],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "OK | Retorna um array com todas as pessoas clientes não administrativas.",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
 									"example": [{
-										"name": "Lewis Hamilton",
-										"email": "lewishamilton@gmail.com",
-										"cpf": "11111111111",
-										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
-										"adm": true,
-										"balance": 1200.00,
+										"name": "Michael Schumacher",
+										"email": "michaelSchumacher@gmail.com",
+										"cpf": "222222222222",
+										"image": "https://sportbuzz.uol.com.br/media/_versions/gettyimages-52491565_widelg.jpg",
+										"adm": false,
+										"balance": 3070.00,
 										"phone": "111111111111",
-										"address": "Avenue Regex, 576 NY",
+										"address": "Avenue Express, 672 NY",
 										"created": "2021-07-01T19:58:00.000Z"
 									}]
 								}
 							}
 						}
 					},
-					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"example": [{
-											"message": "Invalid email. Please enter a valid email address."
-										},
-										{
-											"message": "The password must be at least 6 digits long. Please enter a valid password."
-										},
-										{
-											"message": "Invalid credentials. Please, try again."
-										},
-										{
-											"message": "Unable to login. Please, try again."
-										}
-									]
-								}
-							}
-						}
-					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -248,7 +225,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -390,7 +367,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -464,7 +441,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -539,7 +516,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -636,7 +613,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -727,7 +704,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -801,7 +778,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -869,7 +846,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -957,7 +934,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -992,7 +969,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1009,7 +986,7 @@
 						}
 					},
 					"404": {
-						"description": "Not Found | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Not Found | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1084,7 +1061,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1116,7 +1093,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1133,7 +1110,7 @@
 						}
 					},
 					"404": {
-						"description": "Not Found | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Not Found | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1207,7 +1184,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1233,7 +1210,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1320,7 +1297,7 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1346,7 +1323,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1423,7 +1400,7 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
