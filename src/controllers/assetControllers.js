@@ -2,8 +2,9 @@ const {
   buyOrSellAssetService,
   getAssetByIdService,
   getAllAssetsService,
-  getAssetByCodeService,
   setNewAssetService,
+  setUpdateAssetService,
+  removeAssetService,
 } = require('../services/assetService');
 const { HttpException } = require('../utils/httpException');
 const { statusCode } = require('../utils/httpStatus');
@@ -51,12 +52,6 @@ const getAllAssetsController = async (_req, res) => {
 const setNewAssetController = async (req, res) => {
   const newAsset = req.body;
 
-  const asset = await getAssetByCodeService(newAsset.code);
-
-  if (asset) {
-    throw new HttpException(statusCode.CONFLICT, 'Asset already registered');
-  }
-
   const createAsset = await setNewAssetService(newAsset);
 
   if (!createAsset) {
@@ -66,9 +61,36 @@ const setNewAssetController = async (req, res) => {
   return res.status(statusCode.CREATED).json({ message: 'Asset created successfully' });
 };
 
+const updateAssetController = async (req, res) => {
+  const { id } = req.params;
+  const newAsset = req.body;
+
+  const createAsset = await setUpdateAssetService(id, newAsset);
+
+  if (!createAsset) {
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Not possible update an asset. Please, try again.');
+  }
+
+  return res.status(statusCode.CREATED).json({ message: 'Asset updated successfully' });
+};
+
+const deleteAssetController = async (req, res) => {
+  const { id } = req.params;
+
+  const response = await removeAssetService(id);
+
+  if (response) {
+    return res.status(statusCode.NO_CONTENT).end();
+  }
+
+  throw new HttpException(statusCode.NOT_FOUND, 'Unable to delete. Please, try again.');
+};
+
 module.exports = {
   setNewOrderController,
   getAssetByIdController,
   getAllAssetsController,
   setNewAssetController,
+  updateAssetController,
+  deleteAssetController,
 };
