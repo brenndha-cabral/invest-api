@@ -9,7 +9,6 @@ const {
 } = require('../services/clientService');
 const { HttpException } = require('../utils/httpException');
 const { statusCode } = require('../utils/httpStatus');
-const { authToken } = require('../utils/jwt');
 
 const getClientWithAssetsByIdController = async (req, res) => {
   const { id } = req.params;
@@ -72,23 +71,21 @@ const setNewUserController = async (req, res) => {
 };
 
 const deleteClientController = async (req, res) => {
-  const clientToken = req.headers.authorization;
+  const { id } = req.params;
 
-  const auth = authToken(clientToken);
-
-  const client = await getClientByIdService(auth.id);
+  const client = await getClientByIdService(id);
 
   if (!client) {
     throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
-  if (auth.id !== client.id) {
-    throw new HttpException(statusCode.UNAUTHORIZED, 'Unauthorized client.');
+  const response = await removeClientService(id);
+
+  if (response) {
+    return res.status(statusCode.NO_CONTENT);
   }
 
-  await removeClientService(auth.id);
-
-  return res.status(statusCode.NO_CONTENT).json();
+  throw new HttpException(statusCode.NOT_FOUND, 'Unable to delete. Please, try again.');
 };
 
 module.exports = {
