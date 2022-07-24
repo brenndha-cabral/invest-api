@@ -412,8 +412,8 @@
 				}
 			},
 			"delete": {
-				"summary": "Remove o cliente pelo id",
-				"description": "Esta rota irá remover o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
+				"summary": "Remove a pessoa cliente pelo id",
+				"description": "Esta rota irá remover a pessoa cliente pelo id, é preciso que a pessoa usuária esteja logada. Para remover, é necessário que a pessoa logada seja uma administradora ou a própria pessoa cliente.",
 				"tags": [
 					"Clientes"
 				],
@@ -427,18 +427,8 @@
 					"bearerAuth": []
 				}],
 				"responses": {
-					"200": {
-						"description": "OK",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "object",
-									"example": {
-										"message": "User Successfully deleted"
-									}
-								}
-							}
-						}
+					"204": {
+						"description": "No Content"
 					},
 					"401": {
 						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
@@ -457,6 +447,19 @@
 							}
 						}
 					},
+					"403": {
+						"description": "Forbidden",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Not authorized to delete this asset. Only admins or the same client can delete itself."
+									}
+								}
+							}
+						}
+					},
 					"404": {
 						"description": "Not Found",
 						"content": {
@@ -471,7 +474,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -498,7 +501,7 @@
 				}],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "OK | Retorna um array com todos os ativos",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -557,12 +560,25 @@
 								}
 							}
 						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
 					}
 				}
 			},
 			"post": {
 				"summary": "Insere um novo ativo",
-				"description": "Esta rota irá inserir um novo ativo",
+				"description": "Esta rota irá inserir um novo ativo, é preciso que a pessoa usuária esteja logada e que seja `adm`.",
 				"tags": [
 					"Ativos"
 				],
@@ -794,8 +810,21 @@
 							}
 						}
 					},
+					"403": {
+						"description": "Forbidden",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Not authorized to delete this asset. Only admins can delete it."
+									}
+								}
+							}
+						}
+					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -812,8 +841,8 @@
 		},
 		"/ativos/clientes/{id}": {
 			"get": {
-				"summary": "Retorna o ativo pelo id",
-				"description": "Esta rota irá retornar o ativo pelo id, é preciso que a pessoa usuária esteja logada.",
+				"summary": "Retorna o a pessoa cliente pelo id com todos os ativos que ela possui",
+				"description": "Esta rota irá retornar a pessoa cliente pelo id com todos os ativos que ela possui, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Ativos"
 				],
@@ -834,11 +863,11 @@
 								"schema": {
 									"type": "object",
 									"example": {
-										"codClient": 1,
+										"codCliente": 1,
 										"wallet": [{
-											"codAtivo": null,
-											"qtdeAtivo": 78,
-											"valor": 28.71
+											"codAtivo": 1,
+											"qtdeAtivo": 28,
+											"valor": 12.80
 										}]
 									}
 								}
@@ -876,7 +905,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
