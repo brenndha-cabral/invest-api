@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+
+const salt = bcrypt.genSaltSync(10);
+
 module.exports = {
   async up(queryInterface, _Sequelize) {
     await queryInterface.bulkInsert(
@@ -5,7 +9,7 @@ module.exports = {
       [{
         name: 'Lewis Hamilton',
         email: 'lewishamilton@gmail.com',
-        password: '123456',
+        password: bcrypt.hashSync('123456', salt),
         cpf: '11111111111',
         image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg',
         adm: true,
@@ -17,7 +21,7 @@ module.exports = {
       {
         name: 'Michael Schumacher',
         email: 'MichaelSchumacher@gmail.com',
-        password: '123456',
+        password: bcrypt.hashSync('123897', salt),
         cpf: '22222222222',
         image: 'https://sportbuzz.uol.com.br/media/_versions/gettyimages-52491565_widelg.jpg',
         adm: false,
