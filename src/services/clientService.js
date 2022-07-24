@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const { calculateAllCustodyHelper } = require('../utils/calculateCustody');
 const { generateToken } = require('../utils/jwt');
 const { Client } = require('../database/models');
+const { HttpException } = require('../utils/httpException');
+const { statusCode } = require('../utils/httpStatus');
 
 const getClientWithAssetService = async (id) => {
   const wallet = await calculateAllCustodyHelper(id);
@@ -95,6 +97,14 @@ const setNewClientService = async ({
 const setUpdateClientService = async (id, {
   name, email, password, image, cpf, phone, address,
 }) => {
+  const client = await Client.findOne({
+    where: { id },
+  });
+
+  if (!client) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
+  }
+
   const salt = bcrypt.genSaltSync(10);
 
   const passwordHash = bcrypt.hashSync(password, salt);
