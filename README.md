@@ -80,13 +80,13 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 ### 👉 Com Docker
 
-> :information_source: Rode o serviço `node` com o comando `docker-compose up`.
+> :information_source: Rode os serviços `node` e `db` com o comando `docker-compose up`.
 
-- Esse serviço irá inicializar um container chamado `invest_api`;
+- Esse serviço irá inicializar os containers chamados `invest_api` e `invest_api_db`;
 
 - A partir daqui você pode acessar o container `invest_api` via CLI ou abri-lo no seu editor;
 
-> :information_source: Use o comando `docker exec -it invest_api bash`.
+> :information_source: Use o comando `docker exec -it invest_api sh`.
 
 - Ele te dará acesso ao terminal interativo do container criado pelo docker-compose.
 
@@ -94,18 +94,18 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - `npm install`: Irá instalar todas as dependências;
 
-- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders no database caso ainda não estejam criadas;
+- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders no `invest_api_db`;
 
-- `npm start`: Irá rodar a aplicação na porta `3000` ou adapte o docker-compose e o `.env` caso sinta necessidade.
+- `npm dev`: Irá rodar a aplicação na porta `3000` pelo `nodemon`, ou adapte o docker-compose e o `.env` caso sinta necessidade.
 
 
 ### 👉 Sem Docker
 
-> :information_source: É necessário que você tenha `npm` e `node` instalados em sua máquina.
+> :information_source: É necessário que você tenha `npm`, `node` e `postgres` instalados em sua máquina.
 
 > :information_source: Instale as dependências com `npm install`.
 
-> :information_source: Rode a aplicação com `npm start` na porta `3000` pelo `nodemon`, ou adapte o `.env` caso sinta necessidade.
+> :information_source: Rode a aplicação com `npm dev` na porta `3000` pelo `nodemon`, ou adapte o `.env` caso sinta necessidade.
 
 </details>
 
