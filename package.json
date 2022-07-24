@@ -4,8 +4,8 @@
   "description": "Neste projeto foi desenvolvida uma API que se conecta a um banco de dados para gerenciar uma carteira de investimentos",
   "main": "src/server.js",
   "scripts": {
-    "test": "mocha ./test/**/*.js --exit",
-    "test:mocha": "nyc mocha ./test/**/*.js --exit",
+    "test": "PORT=3001 mocha ./test/**/*.js --exit",
+    "test:mocha": "PORT=3001 nyc mocha ./test/**/*.js --exit",
     "prestart": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
