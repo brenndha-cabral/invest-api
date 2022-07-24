@@ -56,7 +56,7 @@ const getClientByIdController = async (req, res) => {
   return res.status(statusCode.OK).json(client);
 };
 
-const setNewUserController = async (req, res) => {
+const setNewClientController = async (req, res) => {
   const newClient = req.body;
 
   const client = await getClientByEmailService(newClient.email);
@@ -93,6 +93,6 @@ module.exports = {
   getBalanceByIdController,
   getAllClientsController,
   getClientByIdController,
-  setNewUserController,
+  setNewClientController,
   deleteClientController,
 };

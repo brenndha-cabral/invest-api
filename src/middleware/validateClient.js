@@ -93,7 +93,7 @@ const validateClientIsAdm = async (req, _res, next) => {
   const client = authToken(clientToken);
 
   if (client.adm !== true) {
-    throw new HttpException(statusCode.UNAUTHORIZED, 'Client not authorized to add new asset. Only admins can add new assets.');
+    throw new HttpException(statusCode.FORBIDDEN, 'Client not authorized to add new asset. Only admins can add new assets.');
   }
 
   return next();
@@ -136,7 +136,7 @@ const validateClientDelete = async (req, _res, next) => {
   const clientToken = authToken(token);
 
   if (clientToken.adm !== true || clientToken.id !== id || clientToken.id !== client.id) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Not authorized to delete this client. Only admins or the same client can delete itself.');
+    throw new HttpException(statusCode.FORBIDDEN, 'Not authorized to delete this client. Only admins or the same client can delete itself.');
   }
 
   return next();
