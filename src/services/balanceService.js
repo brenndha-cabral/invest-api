@@ -10,8 +10,8 @@ const setBalanceUpdateService = async (codClient, value, path) => {
 
     if (path === '/deposito') {
       updateBalance = Number(client.balance) + Number(value);
-    } else {
-      updateBalance = Number(client.balance) - Number(value); // Saque
+    } else if (path === '/saque') {
+      updateBalance = Number(client.balance) - Number(value);
     }
 
     const [update] = await Client.update(
