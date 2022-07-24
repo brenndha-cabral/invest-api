@@ -841,7 +841,7 @@
 		},
 		"/ativos/clientes/{id}": {
 			"get": {
-				"summary": "Retorna o a pessoa cliente pelo id com todos os ativos que ela possui",
+				"summary": "Retorna a pessoa cliente pelo id com todos os ativos que ela possui",
 				"description": "Esta rota irá retornar a pessoa cliente pelo id com todos os ativos que ela possui, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Ativos"
@@ -923,7 +923,7 @@
 		"/investimentos/comprar": {
 			"post": {
 				"summary": "Insere um nova ordem de compra",
-				"description": "Esta rota irá criar uma nova ordem de compra",
+				"description": "Esta rota irá criar uma nova ordem de compra, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Investimentos"
 				],
@@ -1032,7 +1032,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1050,7 +1050,7 @@
 		"/investimentos/vender": {
 			"post": {
 				"summary": "Insere um nova ordem de venda",
-				"description": "Esta rota irá criar uma nova ordem de venda",
+				"description": "Esta rota irá criar uma nova ordem de venda, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Investimentos"
 				],
@@ -1156,7 +1156,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
