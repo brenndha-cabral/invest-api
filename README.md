@@ -10,6 +10,7 @@
  :round_pushpin: [Tecnologias](#tecnologias)<br />
  :round_pushpin: [Decisões](#decisoes)<br />
  :round_pushpin: [Usabilidade](#usabilidade)<br />
+ :round_pushpin: [Demo](#demo)<br />
  :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Documentação](#documentacao)<br />
  :round_pushpin: [Scripts](#scripts)<br />
@@ -26,6 +27,12 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
  - Esta aplicação seguiu os princípios do REST e se conecta ao banco de dados `postgreSQL` através do [supabase](https://supabase.com/).
  - Para acessar a API, é necessário que a pessoa usuária faça login com suas credencias e isso será autenticado e autorizado via JWT com a geração de token.
  - É possível também que a pessoa usuária possa se cadastrar e utilizar a API, a partir disso é gerado um token para acesso a API.
+ 
+ <h2 id="demo">Demo</h2>
+  
+> :information_source: Para acessar o deploy da aplicação, clique [aqui](https://bc-invest-api.herokuapp.com/) :rocket:
+
+> :information_source: Acesse a documentação [aqui](https://bc-invest-api.herokuapp.com/docs) e simule a usabilidade :rocket:
 
 <h2 id="tecnologias">Tecnologias</h2>
 
@@ -67,19 +74,18 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 :pushpin:  Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas.
 
-:pushpin: Veja a seção [orientações](#orientacoes) antes de rodar a aplicação.
+:pushpin: Veja a seção de [orientações](#orientacoes) antes de rodar a aplicação.
 
 > :information_source: Faça um clone deste repositório:
 
 - `git@github.com:brenndha-cabral/invest-api.git` 
 
-> :information_source: Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de `http://localhost:{porta}/{rota}` 
+- Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de `http://localhost:{porta}/{rota}` 
 
-- Algumas sugestões de clientes:
+> Algumas sugestões de clientes:
 
   :bulb: [HTTPie](https://httpie.io/) | :bulb: [Postman](https://www.postman.com/) | :bulb: [Insomnia](https://insomnia.rest/) | :bulb: [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
-  
-> :information_source: Para acessar o deploy da aplicação, clique [aqui](https://bc-invest-api.herokuapp.com/) :rocket:
+
 
 <h2 id="orientacoes">Orientações</h2>
 
