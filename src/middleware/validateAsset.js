@@ -47,7 +47,11 @@ const validateBuyAsset = async (req, _res, next) => {
   });
 
   if (!asset) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Asset not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
+  }
+
+  if (!client) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   if (Number(qtdeAtivo) > asset.quantity) {
@@ -67,8 +71,16 @@ const validateSellAsset = async (req, _res, next) => {
     where: { id: codAtivo },
   });
 
+  const client = await Client.findOne({
+    where: { id: codCliente },
+  });
+
   if (!asset) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Asset not found. Please, try again.');
+    throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
+  }
+
+  if (!client) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
   }
 
   const assetCustody = await calculateCustodyByIdHelper(codCliente, codAtivo);
