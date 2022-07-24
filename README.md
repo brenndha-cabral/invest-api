@@ -29,8 +29,6 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
  - É possível também que a pessoa usuária possa se cadastrar e utilizar a API, a partir disso é gerado um token para acesso a API.
  
  <h2 id="demo">Demo</h2>
-  
-> :information_source: Para acessar o deploy da aplicação, clique [aqui](https://bc-invest-api.herokuapp.com/) :rocket:
 
 > :information_source: Acesse a documentação [aqui](https://bc-invest-api.herokuapp.com/docs) e simule a usabilidade :rocket:
 
@@ -126,7 +124,7 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 > :information_source: Rode os serviços `node` e `db` com o comando `docker-compose up`.
 
-- Esse serviço irá inicializar os containers chamados `invest_api` e `invest_api_db`;
+- Esse comando irá inicializar os containers chamados `invest_api` e `invest_api_db`;
 
 - A partir daqui você pode acessar o container `invest_api` via CLI ou abri-lo no seu editor;
 
@@ -159,7 +157,11 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 > Caso não tenha conhecimento em Swagger, clique [aqui](https://www.youtube.com/watch?v=cOhguRdlr5A) e veja como é fácil utilizar.
 
- - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login. Após o login, o token retornado deve ser inserido em `Try it out` e isso fará com que haja a autenticação e autorização das rotas. 
+ - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login.
+ 
+ - Para fazer login, clique em `Try it out` e com as credenciais padrões, a aplicação retornará um token.
+ 
+ - Após o login, o token retornado deve ser inserido em `Authorize` e isso fará com que haja a autenticação e autorização para todas as rotas. 
 
  - Exceto a rota `POST /clientes` que não necessita de login, neste caso após o cadastro, será retornado um token para então a utilização da API.
 
