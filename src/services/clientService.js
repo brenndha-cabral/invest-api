@@ -92,6 +92,24 @@ const setNewClientService = async ({
   return { token };
 };
 
+const setUpdateClientService = async (id, {
+  name, email, password, image, cpf, phone, address,
+}) => {
+  const salt = bcrypt.genSaltSync(10);
+
+  const passwordHash = bcrypt.hashSync(password, salt);
+
+  const response = await Client.update({
+    name, email, password: passwordHash, image, cpf, phone, address,
+  }, { where: { id } });
+
+  if (response) {
+    return response;
+  }
+
+  return null;
+};
+
 const removeClientService = async (id) => {
   const client = await Client.destroy({
     where: { id },
@@ -107,5 +125,6 @@ module.exports = {
   getClientByIdService,
   getClientByEmailService,
   setNewClientService,
+  setUpdateClientService,
   removeClientService,
 };
