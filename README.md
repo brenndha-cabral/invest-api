@@ -50,9 +50,17 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 <h2 id="decisoes">Decisões</h2>
 
+<details>
+
+ <summary id="env"><strong>:bulb: Clique aqui e entenda melhor as minhas escolhas para elaborar este projeto</strong></summary><br/>
+
  <img title="ESLint" alt="ESLint" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg"> [ESLint](https://eslint.org/)
 
 - O projeto possui regras estritas de ESLint (Airbnb) para JavaScript onde é possível encontrar e corrigir problemas, seguindo boas práticas e padronização.
+
+ <img title="JavaScript" alt="JavaScript" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg"> [JavaScript](https://www.javascript.com/)
+ 
+ - Além de ser uma linguagem de fácil usabilidade, traz dinamicidade e compatilidade com navegadores modernos, sendo assim uma linguagem de programação ao lado do cliente.
 
 <img title="Docker" alt="Docker" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"> [Docker](https://www.docker.com/)
 
@@ -70,7 +78,17 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - Os JSON Web Tokens representam a autenticação e autorização de forma eficaz e simples.
 
-<h2 id="usabilidade">Usabilidade</h2>
+<img title="Mocha" alt="Mocha" height="20" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mocha/mocha-plain.svg" /> [Mocha](https://mochajs.org/)
+
+- Ele é um framework do JavaScript que roda em Node e no Browser e que permite realizar testes assíncronos.
+
+<img title="Chai" alt="Chai" height="20" width="20" src="./public/assets/images/chai.png"> [Chai](https://www.chaijs.com/)
+
+- Combinando com o Mocha, ele é uma biblioteca de assertion para TDD e BDD que também roda em Node e no Browser.
+
+</details>
+ 
+ <h2 id="usabilidade">Usabilidade</h2>
 
 :pushpin:  Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas.
 
