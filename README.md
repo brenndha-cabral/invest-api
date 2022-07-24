@@ -146,12 +146,21 @@ _Obs: Veja a seção de [documentação](#documentacao) para entender melhor com
 
 <h2 id="der">Diagrama Entidade Relacionamento</h2>
 
-<div align="center">
- <img src="./public/assets/images/der.png" alt="Diagrama Entidade Relacionamento" width="1000">
-</div>
+<details>
 
+<summary id="env"><strong>:chart_with_upwards_trend: Clients | Assets | Orders</strong></summary><br/>
+
+  <div align="center">
+    <img src="./public/assets/images/der.png" alt="Diagrama Entidade Relacionamento" width="1000">
+  </div>
+  
+</details>
 
 <h2 id="arquitetura">Arquitetura</h2>
+
+<details>
+
+<summary id="env"><strong>:open_file_folder: Arquitetura MSC</strong></summary><br/>
 
 Este projeto foi elaborado nos padrões da arquitetura MSC onde existem três camadas:
 
@@ -164,6 +173,8 @@ Este projeto foi elaborado nos padrões da arquitetura MSC onde existem três ca
 <div align="center">
  <img src="./public/assets/images/msc-software-architecture.png" alt="Arquitetura de Software MSC" width="1000">
 </div>
+  
+</details>
 
 
 <h2 id="referencias">Referências</h2>
