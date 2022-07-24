@@ -107,7 +107,7 @@
 		"/clientes": {
 			"get": {
 				"summary": "Lista todas as pessoas clientes",
-				"description": "Esta rota irá listar todas as pessoas clientes, é preciso que a pessoa usuária esteja logada.",
+				"description": "Esta rota irá listar todas as pessoas clientes que não sejam `adm`, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Clientes"
 				],
@@ -331,7 +331,7 @@
 		"/clientes/{id}": {
 			"get": {
 				"summary": "Retorna o cliente pelo id",
-				"description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada.",
+				"description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada para.",
 				"tags": [
 					"Clientes"
 				],
