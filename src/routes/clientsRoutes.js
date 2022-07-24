@@ -1,6 +1,7 @@
 const express = require('express');
 const {
-  setNewClientController,
+  setNewUserController,
+  setUpdateUserController,
   getClientByIdController,
   getAllClientsController,
   deleteClientController,
@@ -15,9 +16,10 @@ const { validateToken } = require('../middleware/validateToken');
 
 const router = express.Router();
 
-router.post('/', validateFieldsNewClient, validateRulesClient, validateClientByEmail, setNewClientController);
 router.get('/', validateToken, getAllClientsController);
 router.get('/:id', validateToken, getClientByIdController);
+router.post('/', validateFieldsNewClient, validateRulesClient, validateClientByEmail, setNewUserController);
+router.put('/:id', validateToken, validateFieldsNewClient, validateRulesClient, setUpdateUserController);
 router.delete('/:id', validateToken, validateClientDelete, deleteClientController);
 
 module.exports = router;
