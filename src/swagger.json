@@ -582,6 +582,9 @@
 				"tags": [
 					"Ativos"
 				],
+				"security": [{
+					"bearerAuth": []
+				}],
 				"requestBody": {
 					"content": {
 						"application/json": {
@@ -1173,8 +1176,8 @@
 		},
 		"/conta/deposito": {
 			"post": {
-				"summary": "Deposita um valor na conta do usuário",
-				"description": "Esta rota irá permitir que se adiciona saldo na conta do usuário",
+				"summary": "Deposita um valor na conta da pessoa usuária",
+				"description": "Esta rota irá permitir ser adicionado saldo na conta da pessoa usuária, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Conta"
 				],
@@ -1188,7 +1191,7 @@
 								"$ref": "#/components/schemas/Conta"
 							},
 							"examples": {
-								"login": {
+								"deposit": {
 									"value": {
 										"codCliente": 1,
 										"valor": 1000.00
@@ -1269,7 +1272,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1286,8 +1289,8 @@
 		},
 		"/conta/saque": {
 			"post": {
-				"summary": "Saca um valor da conta do usuário",
-				"description": "Esta rota irá permitir que se remova saldo da conta do usuário",
+				"summary": "Saca um valor da conta da pessoa usuária",
+				"description": "Esta rota irá permitir ser sacado saldo na conta da pessoa usuária, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Conta"
 				],
@@ -1382,7 +1385,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1459,7 +1462,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
