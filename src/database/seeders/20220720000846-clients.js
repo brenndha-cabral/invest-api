@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         name: 'Michael Schumacher',
-        email: 'michaelSchumacher@gmail.com',
+        email: 'michaelschumacher@gmail.com',
         password: bcrypt.hashSync('123897', salt),
         cpf: '22222222222',
         image: 'https://sportbuzz.uol.com.br/media/_versions/gettyimages-52491565_widelg.jpg',
