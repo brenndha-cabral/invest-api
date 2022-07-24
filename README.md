@@ -79,9 +79,11 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
  - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login.
  
- - Para fazer login, clique em `Try it out` e com as credenciais padrões, a aplicação retornará um token.
+ - Para fazer login, clique em `Try it out` e com as credenciais padrões e em seguida clique em `execute`, a aplicação retornará um token.
  
  - Após o login, o token retornado deve ser inserido em `Authorize` e isso fará com que haja a autenticação e autorização para todas as rotas. 
+
+ - Após isso, o token já será validado em todas as rotas. Siga os exemplos e clique em `execute` para retornar as respostas.
 
  - Exceto a rota `POST /clientes` que não necessita de login, neste caso após o cadastro, será retornado um token para então a utilização da API.
 
@@ -165,7 +167,11 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 <summary id="env"><strong>🧪 Foram realizados testes de integração para atingir a cobertura mínima de 80%</strong></summary><br/>
 
-> :information_source: Foram realizados testes de integração com `Mocha` e `Chai` para atingir a cobertura mínima de 80%.
+> Foram realizados testes de integração com `Mocha` e `Chai`.
+ 
+> Existem cenários de testes comentados por necessitar que os dados do banco estivessem mais específicos.
+ 
+ Um dos grandes desafios desse projeto certamente foram os testes, para validar os testes unitários eu demandaria muito mais tempo visto que não consegui absorver o conteúdo de forma adequada. Então, para haver testagem, escolhi fazer testes de integração pela cobertuda e assertividade. 
 
 <div align="center">
     <img src="./public/assets/images/tests.jpeg" alt="Relatório de cobertura de testes" width="1000">
