@@ -48,11 +48,9 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
  
  <h2 id="usabilidade">Usabilidade</h2>
 
-:pushpin:  Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas.
+> Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas.
 
-:pushpin: Veja a seção de [orientações](#orientacoes) antes de rodar a aplicação.
-
-<hr >
+> Veja a seção de [orientações](#orientacoes) antes de rodar a aplicação.
 
 :round_pushpin: Acessando o deploy pelo Swagger:
 
@@ -66,7 +64,7 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 > Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de:
 
-- `http://localhost:{porta}/{rota}/docs` 
+- `http://localhost:3000/{rota}/docs` 
 
 > Caso prefira outro cliente, aqui estão algumas sugestões:
 
