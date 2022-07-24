@@ -13,9 +13,9 @@ const validateFieldsLogin = [
 const validateRulesLogin = (req, _res, next) => {
   const errors = validationResult(req);
 
-  const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
-
   if (!errors.isEmpty()) {
+    const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
+
     throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
   }
   return next();
