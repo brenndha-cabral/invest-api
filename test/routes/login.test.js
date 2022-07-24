@@ -35,7 +35,8 @@ describe('Verifica se a rota `login` executa corretamente', () => {
 
   it('Verifica se a pessoa não passe uma senha válida, retorna um erro com a mensagem retorna a mensagem `The password must be at least 6 digits long. Please enter a valid password.`', async () => {
     const data = {
-      email: 'lewishamilton@gmail.com', 
+      email: 'lewishamilton@gmail.com',
+      password: '123'
     }
 
     const response = await chai.request(app)
