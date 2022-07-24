@@ -93,9 +93,11 @@ const setNewClientService = async ({
 };
 
 const removeClientService = async (id) => {
-  await Client.destroy({
+  const client = await Client.destroy({
     where: { id },
   });
+
+  return client;
 };
 
 module.exports = {
