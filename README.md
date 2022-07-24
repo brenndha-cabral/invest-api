@@ -9,14 +9,14 @@
  :round_pushpin: [Sobre](#sobre)<br />
  :round_pushpin: [Demo](#demo)<br />
  :round_pushpin: [Tecnologias](#tecnologias)<br />
- :round_pushpin: [Decisões](#decisoes)<br />
  :round_pushpin: [Usabilidade](#usabilidade)<br />
- :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Documentação](#documentacao)<br />
+ :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Scripts](#scripts)<br />
  :round_pushpin: [Testes](#testes)<br />
  :round_pushpin: [DER](#der)<br />
  :round_pushpin: [Arquitetura](#arquitetura)<br />
+ :round_pushpin: [Decisões](#decisoes)<br />
  :round_pushpin: [Referências](#referencias)<br />
  
 <h2 id="sobre">Sobre</h2>
