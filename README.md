@@ -171,6 +171,8 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
  
 > Existem cenários de testes comentados por necessitar que os dados do banco estivessem mais específicos.
  
+> O ideial seria criar um banco de dados específicos para os testes, contudo neste projeto os testes utilizam o mesmo banco de dados de desenvolvimento.
+ 
  Um dos grandes desafios desse projeto certamente foram os testes, para validar os testes unitários eu demandaria muito mais tempo visto que não consegui absorver o conteúdo de forma adequada. Então, para haver testagem, escolhi fazer testes de integração pela cobertuda e assertividade. 
 
 <div align="center">
