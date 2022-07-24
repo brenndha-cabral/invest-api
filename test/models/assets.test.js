@@ -29,4 +29,16 @@ describe('Verifica se Asset model existe, se tem as suas propriedades e se possu
       'created',
     ].forEach(checkPropertyExists(asset));
   });
+
+  context('Verifica se existe todas as associações no model', () => {
+
+    before(() => {
+      Client.associate({ Order });
+    });
+
+    it('Verifica se um Asset tem muitas Orders', () => {
+      chai.expect(Asset.hasMany).to.have.been.calledWith(Order)
+    }) 
+    
+  });
 });
