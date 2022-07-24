@@ -139,9 +139,13 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 <h2 id="scripts">Scripts</h2>
 
-> :information_source: Aqui estão os scripts da aplicação para que você possa utilizar, lembrando que o `docker-compose` já irá rodar o `npm run prestart` e `npm run start`.
+> :information_source: Aqui estão os scripts da aplicação para que você possa utilizar, lembrando que o `docker-compose up` já irá rodar o `npm run prestart` e `npm run dev`.
 
-- `npm run test`: Irá rodar todos os testes unitários da aplicação;
+- `npm run test`: Irá rodar todos os testes unitários e de integração da aplicação;
+
+- `npm run test:mocha`: Irá rodar todos os testes unitários e de integração da aplicação e apresentará um relatório de cobertura;
+
+- `npm prestart`: Irá rodar os comandos para gerar as migrations e seeders;
 
 - `npm run start`: Irá rodar a aplicação (automaticamente irá rodar o `npm run prestart`);
 
@@ -150,6 +154,8 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 - `npm run lint`: Irá apontar todas as inconcistências de `lint`;
 
 - `npm run lint-fix`: Irá corrigir o máximo de inconcistências de `lint` automaticamente.
+
+> Sinta-se à vontade para ajustar os scripts de acordo com a sua necessidade.
 
 
 <h2 id="testes">Testes</h2>
