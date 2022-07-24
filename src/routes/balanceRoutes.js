@@ -10,8 +10,8 @@ const {
 
 const router = express.Router();
 
+router.get('/:id', getBalanceByIdController);
 router.post('/deposito', validateFieldsBalance, validateRulesBalance, validateBalanceDeposit, setBalanceUpdateController);
 router.post('/saque', validateFieldsBalance, validateRulesBalance, validateBalanceWithdraw, setBalanceUpdateController);
-router.get('/:id', getBalanceByIdController);
 
 module.exports = router;
