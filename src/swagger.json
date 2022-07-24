@@ -339,6 +339,7 @@
 					"in": "path",
 					"name": "id",
 					"type": "string",
+					"value": "2",
 					"required": true
 				}],
 				"security": [{
@@ -420,6 +421,7 @@
 				"parameters": [{
 					"in": "path",
 					"name": "id",
+					"value": "2",
 					"type": "string",
 					"required": true
 				}],
@@ -700,6 +702,7 @@
 				"parameters": [{
 					"in": "path",
 					"name": "id",
+					"value": "1",
 					"type": "string",
 					"required": true
 				}],
@@ -776,6 +779,7 @@
 				"parameters": [{
 					"in": "path",
 					"name": "id",
+					"value": "1",
 					"type": "string",
 					"required": true
 				}],
@@ -852,6 +856,7 @@
 				"parameters": [{
 					"in": "path",
 					"name": "id",
+					"value": "2",
 					"type": "string",
 					"required": true
 				}],
@@ -1410,6 +1415,7 @@
 				"parameters": [{
 					"in": "path",
 					"name": "id",
+					"value": "2",
 					"type": "string",
 					"required": true
 				}],
