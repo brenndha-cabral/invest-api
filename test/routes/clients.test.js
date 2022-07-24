@@ -6,7 +6,7 @@ const { statusCode } = require("../../src/utils/httpStatus");
 chai.use(chaiHttp);
 
 describe('Verifica se a rota `clientes` executa corretamente', () => {
-  context("Criação de usuário", () => {
+  context("Criação se a pessoa usuária", () => {
     it('Verifica se ao fazer a requisição para inserir uma nova pessoa cliente, retorna um token', async () => {
   
       const data = {
@@ -29,7 +29,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
   
     });
   
-    it('Verifica se ao fazer a requisição para inserir uma nova pessoa cliente, porém os dados são de um cliente existente, retorna um erro de "Client already exist. Please, try again."', async () => {
+    it('Verifica se ao fazer a requisição para inserir uma nova pessoa cliente, porém os dados são de uma pessoa cliente existente, retorna um erro de "Client already exist. Please, try again."', async () => {
   
       const data = {
         name: 'Lewis Hamilton',
@@ -51,8 +51,8 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
   
     });
 
-    context("Verifica se ao criar um novo usuário os campos estão corretos", () => {
-      it('Name - em branco', async () => {
+    context("Verifica se ao criar uma nova pessoa usuária, os campos estão corretos", () => {
+      it('name - em branco', async () => {
   
         const data = {
           email: 'lewishamilton@gmail.com',
@@ -73,7 +73,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('Name - tipo inválido', async () => {
+      it('name - tipo inválido', async () => {
   
         const data = {
           name : 1,
@@ -95,7 +95,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('Name - tamanho menor que 3', async () => {
+      it('name - tamanho menor que 3', async () => {
   
         const data = {
           name : "ab",
@@ -117,7 +117,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('Email - em branco', async () => {
+      it('email - em branco', async () => {
   
         const data = {
           name: 'lewis hamilton',
@@ -138,7 +138,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('Email - tipo inválido', async () => {
+      it('email - tipo inválido', async () => {
   
         const data = {
           name: 'lewis hamilton',
@@ -224,6 +224,28 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
+      it('confirmPassword - não seja igual a password', async () => {
+  
+        const data = {
+          name: 'lewis hamilton',
+          email: 'lewishamilton@gmail.com',
+          password: '123456',
+          confirmPassword: '1208',
+          cpf: '11111111111',
+          image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg',
+          phone: '111111111111',
+          address: 'Avenue Regex, 576 NY'
+      }
+    
+        const response = await chai.request(app)
+        .post('/clientes')
+        .send(data);
+        
+        chai.expect(response.status).to.be.equal(statusCode.BAD_REQUEST);
+        chai.expect(response.body.message).to.be.eq('Passwords are not the same. Please, try again.');
+    
+      });
+
       it('cpf - em branco', async () => {
   
         const data = {
@@ -267,7 +289,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('cpf - tamanho menor que 11', async () => {
+      it('cpf - tamanho diferente que 11', async () => {
   
         const data = {
           name: 'lewis hamilton',
@@ -354,7 +376,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     
       });
 
-      it('phone - tamanho menor que 12', async () => {
+      it('phone - tamanho diferente que 12', async () => {
   
         const data = {
           name: 'lewis hamilton',
@@ -503,8 +525,8 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
     });
   });
 
-  context("Exclusão da pessoa usuária", () => {
-    context("Autenticados como uma pessoa usuária tipo admin", () => {
+  context("Exclusão da pessoa cliente", () => {
+    context("Autenticados como uma pessoa cliente do tipo admin", () => {
       let token;
 
       beforeEach(async () => {
@@ -548,7 +570,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
       });
     })
 
-    context("Autenticados como uma pessoa usuária comum", () => {
+    context("Autenticados como uma pessoa cliente do tipo comum", () => {
       let token;
 
       beforeEach(async () => {
@@ -581,7 +603,6 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
         
         const clients = getClientsResponse.body
         const client = clients[clients.length - 1];
-
         
         const response = await chai.request(app)
         .delete('/clientes/' + client.id)
@@ -592,7 +613,7 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
       });
 
       it('Verifica se ao passar o id da própria pessoa usuária, retorna um sucesso', async () => {
-        //Get the last client criated on database
+        // Pega a última pessoa usuária criada no database
         const getClientsResponse = await chai.request(app)
         .get('/clientes')
         .set({ "Authorization": `Bearer ${token}` })
@@ -600,17 +621,17 @@ describe('Verifica se a rota `clientes` executa corretamente', () => {
         const clients = getClientsResponse.body
         const client = clients[clients.length - 1];
 
-        //Login with this client
+        // Login com esse cliente
         const lastClientData = {
           email: client.email,
           password: '234567' 
         }
     
-        const lastClientloginResponse = await chai.request(app)
+        const lastClientLoginResponse = await chai.request(app)
         .post('/login')
         .send(lastClientData);
     
-        let lestClientToken = lastClientloginResponse.body.token;
+        let lestClientToken = lastClientLoginResponse.body.token;
        
         const response = await chai.request(app)
         .delete('/clientes/' + client.id)
