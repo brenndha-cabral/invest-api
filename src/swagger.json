@@ -766,8 +766,8 @@
 					}
 				},
 				"responses": {
-					"200": {
-						"description": "OK",
+					"201": {
+						"description": "Created",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -945,6 +945,25 @@
 				"security": [{
 					"bearerAuth": []
 				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Criar Ativo"
+							},
+							"examples": {
+								"asset": {
+									"value": {
+										"name": "Vale",
+										"code": "VALE3",
+										"quantity": 300,
+										"value": "18.50"
+									}
+								}
+							}
+						}
+					}
+				},
 				"responses": {
 					"201": {
 						"description": "Created",
@@ -953,9 +972,7 @@
 								"schema": {
 									"type": "object",
 									"example": {
-										"codAtivo": 1,
-										"qtdeAtivo": 300,
-										"valor": "18.50"
+										"message": "Asset updated successfully"
 									}
 								}
 							}
