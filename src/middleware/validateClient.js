@@ -40,6 +40,9 @@ const validateFieldsNewClient = [
     .withMessage('"cpf" must be a string')
     .isLength(11)
     .withMessage('"cpf" length must be at 11 characters long'),
+  check('image')
+    .isString()
+    .withMessage('"image" must be a string'),
   check('phone')
     .exists()
     .withMessage('"phone" is required')
@@ -60,9 +63,6 @@ const validateRulesClient = (req, _res, next) => {
   if (!errors.isEmpty()) {
     const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
 
-    if (errorMessage.includes('required')) {
-      throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
-    }
     throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
   }
   return next();
@@ -89,8 +89,8 @@ const validateClientIsAdm = async (req, _res, next) => {
 
   const client = authToken(clientToken);
 
-  if (client.adm !== true) {
-    throw new HttpException(statusCode.FORBIDDEN, 'Client not authorized to add new asset. Only admins can add new assets.');
+  if (!client.adm) {
+    throw new HttpException(statusCode.UNAUTHORIZED, 'Client not authorized to add new asset. Only admins can add new assets.');
   }
 
   return next();
@@ -126,14 +126,24 @@ const validateClientLogin = async (req, _res, next) => {
 
 const validateClientDelete = async (req, _res, next) => {
   const { id } = req.params;
-  const token = req.headers.authorization;
+  const reqToken = req.headers.authorization;
+
+  const [, token] = reqToken.split(' ');
 
   const client = await getClientByIdService(id);
 
+  if (!client) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
+  }
+
   const clientToken = authToken(token);
 
-  if (clientToken.adm !== true || clientToken.id !== id || clientToken.id !== client.id) {
-    throw new HttpException(statusCode.FORBIDDEN, 'Not authorized to delete this client. Only admins or the same client can delete itself.');
+  if (clientToken.adm) {
+    return next();
+  }
+
+  if (!clientToken.adm && Number(clientToken.id) !== Number(id)) {
+    throw new HttpException(statusCode.BAD_REQUEST, 'Not authorized to delete this client. Only admins or the same client can delete itself.');
   }
 
   return next();
