@@ -65,6 +65,12 @@ const updateAssetController = async (req, res) => {
   const { id } = req.params;
   const newAsset = req.body;
 
+  const asset = await getAssetByIdService(id);
+
+  if (!asset) {
+    throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
+  }
+
   const createAsset = await setUpdateAssetService(id, newAsset);
 
   if (!createAsset) {
