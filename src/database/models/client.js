@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'client_id',
       as: 'orders',
     });
+
+    Client.hasMany(models.AccountOperation, {
+      foreignKey: 'client_id',
+      as: 'transactions',
+    });
   };
 
   return Client;
