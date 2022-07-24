@@ -182,8 +182,8 @@
 				}
 			},
 			"post": {
-				"summary": "Insere um novo cliente",
-				"description": "Esta rota irá inserir um novo cliente",
+				"summary": "Insere uma nova pessoa cliente",
+				"description": "Esta rota irá inserir uma nova pessoa cliente e gerar um token no retorno.",
 				"tags": [
 					"Clientes"
 				],
@@ -313,7 +313,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -330,8 +330,8 @@
 		},
 		"/clientes/{id}": {
 			"get": {
-				"summary": "Retorna o cliente pelo id",
-				"description": "Esta rota irá retornar o cliente pelo id, é preciso que a pessoa usuária esteja logada para.",
+				"summary": "Retorna uma pessoa cliente pelo id",
+				"description": "Esta rota irá retornar uma pessoa cliente pelo id, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Clientes"
 				],
@@ -346,20 +346,20 @@
 				}],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "OK | Retorna um objeto com a pessoa cliente não administrativa.",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
 									"example": {
-										"name": "Lewis Hamilton",
-										"email": "lewishamilton@gmail.com",
-										"cpf": "11111111111",
-										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
-										"adm": true,
-										"balance": 1200.00,
+										"name": "Michael Schumacher",
+										"email": "michaelSchumacher@gmail.com",
+										"cpf": "222222222222",
+										"image": "https://sportbuzz.uol.com.br/media/_versions/gettyimages-52491565_widelg.jpg",
+										"adm": false,
+										"balance": 3070.00,
 										"phone": "111111111111",
-										"address": "Avenue Regex, 576 NY",
+										"address": "Avenue Express, 672 NY",
 										"created": "2021-07-01T19:58:00.000Z"
 									}
 								}
@@ -397,7 +397,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -1485,8 +1485,7 @@
 						"required": true
 					},
 					"image": {
-						"type": "string",
-						"required": true
+						"type": "string"
 					},
 					"phone": {
 						"type": "string",
