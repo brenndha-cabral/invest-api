@@ -30,7 +30,7 @@
 		"/login": {
 			"post": {
 				"summary": "Login para acessar a aplicação",
-				"description": "Esta rota irá permitir que a pessoa usuária faça login para ter acesso a aplicação.",
+				"description": "Esta rota irá permitir que a pessoa usuária faça login para ter acesso a aplicação. Caso a pessoa usuária não possua login, deve se cadastrar para gerar um token. Ao fazer o login, deve-se copiar o token gerado e colar em `Authorize` para que seja autenticado e autorizado e a API seja liberada para consumo. Apenas a rota `POST /clientes` que é aberta para a pessoa usuária se cadastrar e ser gerado um token.",
 				"tags": [
 					"Login"
 				],
@@ -86,14 +86,17 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error | Respostas possíveis (Será enviado apenas uma resposta por requisição)",
 						"content": {
 							"application/json": {
 								"schema": {
 									"type": "object",
-									"example": {
-										"message": "Unable to login. Please, try again."
-									}
+									"example": [{
+										"message": "Unexpected error. Please try again."
+									},
+									{
+										"message": "Could not generate token. Please, try again."
+									}]
 								}
 							}
 						}
@@ -103,8 +106,8 @@
 		},
 		"/clientes": {
 			"get": {
-				"summary": "Lista todos os clientes",
-				"description": "Esta rota irá listar todos os clientes, é preciso que a pessoa usuária esteja logada.",
+				"summary": "Lista todas as pessoas clientes",
+				"description": "Esta rota irá listar todas as pessoas clientes, é preciso que a pessoa usuária esteja logada.",
 				"tags": [
 					"Clientes"
 				],
