@@ -45,46 +45,6 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
   <img title="Mocha" alt="Mocha" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mocha/mocha-plain.svg" />
   <img title="Chai" alt="Chai" height="30" width="30" src="./public/assets/images/chai.png">
 </div>
-
-<h2 id="decisoes">Decisões</h2>
-
-<details>
-
- <summary id="env"><strong>:bulb: Clique aqui e entenda melhor as minhas escolhas para elaborar este projeto</strong></summary><br/>
-
- <img title="ESLint" alt="ESLint" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg"> [ESLint](https://eslint.org/)
-
-- O projeto possui regras estritas de ESLint (Airbnb) para JavaScript onde é possível encontrar e corrigir problemas, seguindo boas práticas e padronização.
-
- <img title="JavaScript" alt="JavaScript" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg"> [JavaScript](https://www.javascript.com/)
- 
- - Além de ser uma linguagem de fácil usabilidade, traz dinamicidade e compatilidade com navegadores modernos, sendo assim uma linguagem de programação ao lado do cliente.
-
-<img title="Docker" alt="Docker" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"> [Docker](https://www.docker.com/)
-
-- Utilizar imagens Docker para empacotar toda a aplicação e suas dependências, torna a distribuição mais fácil, segura e padronizada.
-
-<img title="Sequelize" alt="Sequelize" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sequelize/sequelize-original.svg"> [Sequelize](https://sequelize.org/)
-
-- Como uma das bibliotecas de ORM mais conhecidas, o Sequelize foi utilizado nesse projeto pois o código se torna mais legível, extensível e de fácil manutenção.
-
-<img title="PostgreSQL" alt="Sequelize" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg"> [PostegreSQL](https://postgresql.org/)
-
-- Além da usabilidade simples, ele suporta um intenso fluxo de dados com garantia de estabilidade e segurança.
-
-<img title="JWT" alt="JWT" height="15" width="15" src="./public/assets/images/jwt.png"> [JWT](https://jwt.io/)
-
-- Os JSON Web Tokens representam a autenticação e autorização de forma eficaz e simples.
-
-<img title="Mocha" alt="Mocha" height="20" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mocha/mocha-plain.svg" /> [Mocha](https://mochajs.org/)
-
-- Ele é um framework do JavaScript que roda em Node e no Browser e que permite realizar testes assíncronos.
-
-<img title="Chai" alt="Chai" height="20" width="20" src="./public/assets/images/chai.png"> [Chai](https://www.chaijs.com/)
-
-- Combinando com o Mocha, ele é uma biblioteca de assertion para TDD e BDD que também roda em Node e no Browser.
-
-</details>
  
  <h2 id="usabilidade">Usabilidade</h2>
 
@@ -92,17 +52,40 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 :pushpin: Veja a seção de [orientações](#orientacoes) antes de rodar a aplicação.
 
+<hr >
+
+:round_pushpin: Acessando o deploy pelo Swagger:
+
+  - Clique [aqui](https://bc-invest-api.herokuapp.com/docs) e veja como é simples utilizar.
+  
+:round_pushpin: Acessando o local pelo Swagger:
+
 > Faça um clone deste repositório:
 
 - `git@github.com:brenndha-cabral/invest-api.git` 
 
 > Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de:
 
-- `http://localhost:{porta}/{rota}` 
+- `http://localhost:{porta}/{rota}/docs` 
 
-> Algumas sugestões de clientes:
+> Caso prefira outro cliente, aqui estão algumas sugestões:
 
   :bulb: [HTTPie](https://httpie.io/) | :bulb: [Postman](https://www.postman.com/) | :bulb: [Insomnia](https://insomnia.rest/) | :bulb: [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
+  
+ 
+<h2 id="documentacao">Documentação</h2>
+
+> :information_source: Acesse [aqui](https://bc-invest-api.herokuapp.com/docs/) a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
+
+> Caso não tenha conhecimento em Swagger, clique [aqui](https://www.youtube.com/watch?v=cOhguRdlr5A) e veja como é fácil utilizar.
+
+ - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login.
+ 
+ - Para fazer login, clique em `Try it out` e com as credenciais padrões, a aplicação retornará um token.
+ 
+ - Após o login, o token retornado deve ser inserido em `Authorize` e isso fará com que haja a autenticação e autorização para todas as rotas. 
+
+ - Exceto a rota `POST /clientes` que não necessita de login, neste caso após o cadastro, será retornado um token para então a utilização da API.
 
 
 <h2 id="orientacoes">Orientações</h2>
@@ -151,23 +134,13 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 </details>
 
-<h2 id="documentacao">Documentação</h2>
-
-> :information_source: Acesse [aqui](https://bc-invest-api.herokuapp.com/docs/) a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
-
-> Caso não tenha conhecimento em Swagger, clique [aqui](https://www.youtube.com/watch?v=cOhguRdlr5A) e veja como é fácil utilizar.
-
- - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login.
- 
- - Para fazer login, clique em `Try it out` e com as credenciais padrões, a aplicação retornará um token.
- 
- - Após o login, o token retornado deve ser inserido em `Authorize` e isso fará com que haja a autenticação e autorização para todas as rotas. 
-
- - Exceto a rota `POST /clientes` que não necessita de login, neste caso após o cadastro, será retornado um token para então a utilização da API.
-
 <h2 id="scripts">Scripts</h2>
 
-> :information_source: Aqui estão os scripts da aplicação para que você possa utilizar, lembrando que o `docker-compose up` já irá rodar o `npm run prestart` e `npm run dev`.
+<details>
+
+<summary id="env"><strong>:pencil: Aqui estão os scripts da aplicação para que você possa utilizar</strong></summary><br/>
+
+> :information_source: Lembrando que o `docker-compose up` já irá rodar o `npm run prestart` e `npm run dev`.
 
 - `npm run test`: Irá rodar todos os testes unitários e de integração da aplicação;
 
@@ -185,14 +158,22 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 > Sinta-se à vontade para ajustar os scripts de acordo com a sua necessidade.
 
+</details>
+
 
 <h2 id="testes">Testes</h2>
+
+<details>
+
+<summary id="env"><strong>🧪 Foram realizados testes de integração para atingir a cobertura mínima de 80%</strong></summary><br/>
 
 > :information_source: Foram realizados testes de integração com `Mocha` e `Chai` para atingir a cobertura mínima de 80%.
 
 <div align="center">
     <img src="./public/assets/images/tests.jpeg" alt="Relatório de cobertura de testes" width="1000">
 </div>
+
+</details>
 
 <h2 id="der">Diagrama Entidade Relacionamento</h2>
 
@@ -224,6 +205,46 @@ Este projeto foi elaborado nos padrões da arquitetura MSC onde existem três ca
  <img src="./public/assets/images/msc-software-architecture.png" alt="Arquitetura de Software MSC" width="1000">
 </div>
   
+</details>
+
+<h2 id="decisoes">Decisões</h2>
+
+<details>
+
+ <summary id="env"><strong>:bulb: Clique aqui e entenda melhor as minhas escolhas para elaborar este projeto</strong></summary><br/>
+
+ <img title="ESLint" alt="ESLint" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/eslint/eslint-original.svg"> [ESLint](https://eslint.org/)
+
+- O projeto possui regras estritas de ESLint (Airbnb) para JavaScript onde é possível encontrar e corrigir problemas, seguindo boas práticas e padronização.
+
+ <img title="JavaScript" alt="JavaScript" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg"> [JavaScript](https://www.javascript.com/)
+ 
+ - Além de ser uma linguagem de fácil usabilidade, traz dinamicidade e compatilidade com navegadores modernos, sendo assim uma linguagem de programação ao lado do cliente.
+
+<img title="Docker" alt="Docker" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg"> [Docker](https://www.docker.com/)
+
+- Utilizar imagens Docker para empacotar toda a aplicação e suas dependências, torna a distribuição mais fácil, segura e padronizada.
+
+<img title="Sequelize" alt="Sequelize" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sequelize/sequelize-original.svg"> [Sequelize](https://sequelize.org/)
+
+- Como uma das bibliotecas de ORM mais conhecidas, o Sequelize foi utilizado nesse projeto pois o código se torna mais legível, extensível e de fácil manutenção.
+
+<img title="PostgreSQL" alt="Sequelize" height="20" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg"> [PostegreSQL](https://postgresql.org/)
+
+- Além da usabilidade simples, ele suporta um intenso fluxo de dados com garantia de estabilidade e segurança.
+
+<img title="JWT" alt="JWT" height="15" width="15" src="./public/assets/images/jwt.png"> [JWT](https://jwt.io/)
+
+- Os JSON Web Tokens representam a autenticação e autorização de forma eficaz e simples.
+
+<img title="Mocha" alt="Mocha" height="20" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mocha/mocha-plain.svg" /> [Mocha](https://mochajs.org/)
+
+- Ele é um framework do JavaScript que roda em Node e no Browser e que permite realizar testes assíncronos.
+
+<img title="Chai" alt="Chai" height="20" width="20" src="./public/assets/images/chai.png"> [Chai](https://www.chaijs.com/)
+
+- Combinando com o Mocha, ele é uma biblioteca de assertion para TDD e BDD que também roda em Node e no Browser.
+
 </details>
 
 
