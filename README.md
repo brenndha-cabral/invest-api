@@ -185,7 +185,7 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 <details>
 
-<summary id="env"><strong>:chart_with_upwards_trend: Clients | Assets | Orders</strong></summary><br/>
+<summary id="env"><strong>:chart_with_upwards_trend: Clients | Assets | Orders | AccountOperations</strong></summary><br/>
 
   <div align="center">
     <img src="./public/assets/images/der.png" alt="Diagrama Entidade Relacionamento" width="1000">
