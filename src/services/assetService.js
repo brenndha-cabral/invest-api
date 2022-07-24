@@ -96,10 +96,37 @@ const setNewAssetService = async ({
   return null;
 };
 
+const setUpdateAssetService = async (id, {
+  name, code, quantity, value,
+}) => {
+  const response = await Asset.update(
+    {
+      name, code, quantity, value,
+    },
+    { where: { id } },
+  );
+
+  if (response) {
+    return response;
+  }
+
+  return null;
+};
+
+const removeAssetService = async (id) => {
+  const asset = await Asset.destroy({
+    where: { id },
+  });
+
+  return asset;
+};
+
 module.exports = {
   buyOrSellAssetService,
   getAssetByIdService,
   getAllAssetsService,
   setNewAssetService,
   getAssetByCodeService,
+  setUpdateAssetService,
+  removeAssetService,
 };
