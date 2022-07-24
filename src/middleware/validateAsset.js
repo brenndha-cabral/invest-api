@@ -1,100 +1,78 @@
 const { check, validationResult } = require('express-validator');
 const { HttpException } = require('../utils/httpException');
 const { statusCode } = require('../utils/httpStatus');
-const { Asset, Client } = require('../database/models/index');
-const { calculateCustodyByIdHelper } = require('../utils/calculateCustody');
+const { authToken } = require('../utils/jwt');
+const { getAssetByIdService, getAssetByCodeService } = require('../services/assetService');
 
-const validateFieldsInvest = [
-  check('codCliente')
+const validateFieldsAsset = [
+  check('name')
     .exists()
-    .withMessage('"codCliente" is required.')
-    .isNumeric()
-    .withMessage('"codCliente" must be a number.'),
-  check('codAtivo')
+    .withMessage('"name" is required.')
+    .isString()
+    .withMessage('"name" must be a string.'),
+  check('code')
     .exists()
-    .withMessage('"codAtivo" is required.')
-    .isNumeric()
-    .withMessage('"codAtivo" must be a number.'),
-  check('qtdeAtivo')
+    .withMessage('"code" is required.')
+    .isString()
+    .withMessage('"code" must be a string.'),
+  check('quantity')
     .exists()
-    .withMessage('"qtdeAtivo" is required.')
+    .withMessage('"quantity" is required.')
     .isNumeric()
-    .withMessage('"qtdeAtivo" must be a number.'),
+    .withMessage('"quantity" must be a number.'),
+  check('value')
+    .exists()
+    .withMessage('"value" is required.')
+    .isNumeric()
+    .withMessage('"value" must be a number.'),
 ];
-const validateRulesInvest = (req, _res, next) => {
+const validateRulesAsset = (req, _res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     const errorMessage = (errors.array()[0]) ? errors.array()[0].msg : '';
 
-    if (errorMessage.includes('required')) {
-      throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
-    }
     throw new HttpException(statusCode.BAD_REQUEST, errorMessage);
   }
   return next();
 };
 
-const validateBuyAsset = async (req, _res, next) => {
-  const { codCliente, codAtivo, qtdeAtivo } = req.body;
+const validateAssetExist = async (req, _res, next) => {
+  const { code } = req.body;
 
-  const asset = await Asset.findOne({
-    where: { id: codAtivo },
-  });
+  const asset = await getAssetByCodeService(code);
 
-  const client = await Client.findOne({
-    where: { id: codCliente },
-  });
-
-  if (!asset) {
-    throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
+  if (asset) {
+    throw new HttpException(statusCode.CONFLICT, 'Asset already registered');
   }
 
-  if (!client) {
-    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
-  }
-
-  if (Number(qtdeAtivo) > asset.quantity) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Asset quantity must be less or equal the available. Please, try again.');
-  }
-
-  if ((asset.value * Number(qtdeAtivo)) > client.balance) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Client does not have sufficient balance for the transaction. Please, try again.');
-  }
   return next();
 };
 
-const validateSellAsset = async (req, _res, next) => {
-  const { codCliente, codAtivo, qtdeAtivo } = req.body;
+const validateAssetDelete = async (req, _res, next) => {
+  const { id } = req.params;
+  const reqToken = req.headers.authorization;
 
-  const asset = await Asset.findOne({
-    where: { id: codAtivo },
-  });
+  const [, token] = reqToken.split(' ');
 
-  const client = await Client.findOne({
-    where: { id: codCliente },
-  });
+  const asset = await getAssetByIdService(id);
 
   if (!asset) {
     throw new HttpException(statusCode.NOT_FOUND, 'Asset not found. Please, try again.');
   }
 
-  if (!client) {
-    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
-  }
+  const clientToken = authToken(token);
 
-  const assetCustody = await calculateCustodyByIdHelper(codCliente, codAtivo);
-
-  if (Number(qtdeAtivo) > assetCustody) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Asset quantity must be less or equal the available or client does not have this asset. Please, try again.');
+  if (!clientToken.adm) {
+    throw new HttpException(statusCode.UNAUTHORIZED, 'Not authorized to delete this asset. Only admins can delete it.');
   }
 
   return next();
 };
 
 module.exports = {
-  validateFieldsInvest,
-  validateRulesInvest,
-  validateBuyAsset,
-  validateSellAsset,
+  validateFieldsAsset,
+  validateRulesAsset,
+  validateAssetExist,
+  validateAssetDelete,
 };
