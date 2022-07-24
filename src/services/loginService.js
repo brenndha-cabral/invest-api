@@ -9,19 +9,18 @@ const loginService = async (email, password) => {
     where: { email },
   });
 
-  const passwordHash = bcrypt.compareSync(password, client.password);
-
-  if (!passwordHash) {
-    throw new HttpException(statusCode.BAD_REQUEST, 'Invalid credentials. Please, try again.');
-  }
-
   if (client) {
+    const passwordHash = bcrypt.compareSync(password, client.password);
+
+    if (!passwordHash) {
+      throw new HttpException(statusCode.BAD_REQUEST, 'Invalid credentials. Please, try again.');
+    }
     const token = generateToken(client.dataValues);
 
     return { token };
   }
 
-  return null;
+  throw new HttpException(statusCode.BAD_REQUEST, 'Invalid credentials. Please, try again.');
 };
 
 module.exports = {
