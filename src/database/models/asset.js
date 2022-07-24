@@ -10,5 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'Assets',
   });
 
+  Asset.associate = (models) => {
+    Asset.hasMany(models.Order, {
+      foreignKey: 'asset_id',
+      as: 'orders',
+    });
+  };
+
   return Asset;
 };
