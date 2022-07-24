@@ -76,11 +76,13 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 :pushpin: Veja a seção de [orientações](#orientacoes) antes de rodar a aplicação.
 
-> :information_source: Faça um clone deste repositório:
+> Faça um clone deste repositório:
 
 - `git@github.com:brenndha-cabral/invest-api.git` 
 
-- Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de `http://localhost:{porta}/{rota}` 
+> Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de:
+
+- `http://localhost:{porta}/{rota}` 
 
 > Algumas sugestões de clientes:
 
