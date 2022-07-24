@@ -167,7 +167,7 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
@@ -412,6 +412,165 @@
 					}
 				}
 			},
+			"put": {
+				"summary": "Atualiza uma nova pessoa cliente pelo id",
+				"description": "Esta rota irá atualizar uma pessoa cliente pelo id, é preciso que a pessoa usuária esteja logada.",
+				"tags": [
+					"Clientes"
+				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"type": "string",
+					"value": "2",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Criar Cliente"
+							},
+							"examples": {
+								"client": {
+									"value": {
+										"name": "Lewis Hamilton",
+										"email": "lewishamilton@gmail.com",
+										"password": "123456",
+										"cpf": "11111111111",
+										"image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg",
+										"phone": "111111111111",
+										"address": "Avenue Regex, 576 NY"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"token": "Client updated successfully"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "'name' is required"
+										},
+										{
+											"message": "'name' must be a string"
+										},
+										{
+											"message": "'name' length must be at least 3 characters long"
+										},
+										{
+											"message": "'email' is required"
+										},
+										{
+											"message": "'email' must be a email"
+										},
+										{
+											"message": "'password' is required"
+										},
+										{
+											"message": "'password' length must be at least 6 characters long"
+										},
+										{
+											"message": "'confirmPassword' is required"
+										},
+										{
+											"message": "'cpf' is required"
+										},
+										{
+											"message": "'cpf' must be a string"
+										},
+										{
+											"message": "'cpf' length must be at 11 characters long"
+										},
+										{
+											"message": "'image' must be a string"
+										},
+										{
+											"message": "'phone' is required"
+										},
+										{
+											"message": "'phone' must be a string"
+										},
+										{
+											"message": "'phone' length must be at 12 characters long"
+										},
+										{
+											"message": "'address' is required"
+										},
+										{
+											"message": "'address' must be a string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Client not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
 			"delete": {
 				"summary": "Remove a pessoa cliente pelo id",
 				"description": "Esta rota irá remover a pessoa cliente pelo id, é preciso que a pessoa usuária esteja logada. Para remover, é necessário que a pessoa logada seja uma administradora ou a própria pessoa cliente.",
@@ -550,7 +709,7 @@
 							}
 						},
 						"500": {
-							"description": "Unexpected error. Please try again",
+							"description": "Internal Server Error",
 							"content": {
 								"application/json": {
 									"schema": {
@@ -756,7 +915,84 @@
 						}
 					},
 					"500": {
-						"description": "Unexpected error. Please try again",
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Unexpected error. Please try again"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"summary": "Atualiza o ativo pelo id",
+				"description": "Esta rota irá atualizar o ativo pelo id, é preciso que a pessoa usuária esteja logada e que seja administradora.",
+				"tags": [
+					"Ativos"
+				],
+				"parameters": [{
+					"in": "path",
+					"name": "id",
+					"value": "1",
+					"type": "string",
+					"required": true
+				}],
+				"security": [{
+					"bearerAuth": []
+				}],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"codAtivo": 1,
+										"qtdeAtivo": 300,
+										"valor": "18.50"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized | Respostas possíveis (Será enviado apenas um objeto com uma mensagem por requisição)",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": [{
+											"message": "Token not found"
+										},
+										{
+											"message": "Token invalid"
+										}
+									]
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"example": {
+										"message": "Asset not found. Please, try again."
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
 						"content": {
 							"application/json": {
 								"schema": {
