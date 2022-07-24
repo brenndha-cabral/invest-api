@@ -9,8 +9,8 @@
  :round_pushpin: [Sobre](#sobre)<br />
  :round_pushpin: [Tecnologias](#tecnologias)<br />
  :round_pushpin: [Decisões](#decisoes)<br />
- :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Usabilidade](#usabilidade)<br />
+ :round_pushpin: [Orientações](#orientacoes)<br />
  :round_pushpin: [Documentação](#documentacao)<br />
  :round_pushpin: [Scripts](#scripts)<br />
  :round_pushpin: [Testes](#testes)<br />
@@ -63,6 +63,24 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 - Os JSON Web Tokens representam a autenticação e autorização de forma eficaz e simples.
 
+<h2 id="usabilidade">Usabilidade</h2>
+
+:pushpin:  Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas.
+
+:pushpin: Veja a seção [orientações](#orientacoes) antes de rodar a aplicação.
+
+> :information_source: Faça um clone deste repositório:
+
+- `git@github.com:brenndha-cabral/invest-api.git` 
+
+> :information_source: Após rodar a aplicação localmente ou pelo docker, você deverá acessar através de `http://localhost:{porta}/{rota}` 
+
+- Algumas sugestões de clientes:
+
+  :bulb: [HTTPie](https://httpie.io/) | :bulb: [Postman](https://www.postman.com/) | :bulb: [Insomnia](https://insomnia.rest/) | :bulb: [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
+  
+> :information_source: Para acessar o deploy da aplicação, clique [aqui](https://bc-invest-api.herokuapp.com/) :rocket:
+
 <h2 id="orientacoes">Orientações</h2>
 
 <details>
@@ -109,21 +127,15 @@ Esta aplicação tem como objetivo gerenciar investimentos em ações, com algum
 
 </details>
 
-<h2 id="usabilidade">Usabilidade</h2>
-
-_Obs: Veja a seção de [documentação](#documentacao) para entender melhor como funcionam as rotas._
-
-> :information_source: Após rodar a aplicação localmente, você deverá acessar através de `http://localhost:{porta}/{rota}` 
-
-- Algumas sugestões de clientes:
-
-  :bulb: [HTTPie](https://httpie.io/) | :bulb: [Postman](https://www.postman.com/) | :bulb: [Insomnia](https://insomnia.rest/) | :bulb: [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
-  
-> :information_source: Para acessar o deploy da aplicação, clique [aqui]() :rocket:
-
 <h2 id="documentacao">Documentação</h2>
 
-> :information_source: Acesse [aqui]() a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
+> :information_source: Acesse [aqui](https://bc-invest-api.herokuapp.com/docs/) a documentação deste projeto onde constam mais detalhes sobre a estrutura da API.
+
+> Caso não tenha conhecimento em Swagger, clique [aqui](https://www.youtube.com/watch?v=cOhguRdlr5A) e veja como é fácil utilizar.
+
+ - Para que a as rotas sejam consumidas, é necessário que a pessoa usuária faça login. Após o login, o token retornado deve ser inserido em `Try it out` e isso fará com que haja a autenticação e autorização das rotas. 
+
+ - Exceto a rota `POST /clientes` que não necessita de login, neste caso após o cadastro, será retornado um token para então a utilização da API.
 
 <h2 id="scripts">Scripts</h2>
 
