@@ -5,6 +5,7 @@ const {
   getClientByIdService,
   getClientByEmailService,
   setNewClientService,
+  setUpdateClientService,
   removeClientService,
 } = require('../services/clientService');
 const { HttpException } = require('../utils/httpException');
@@ -70,19 +71,26 @@ const setNewClientController = async (req, res) => {
   return res.status(statusCode.CREATED).json(token);
 };
 
-const deleteClientController = async (req, res) => {
+const setUpdateUserController = async (req, res) => {
   const { id } = req.params;
+  const newClient = req.body;
 
-  const client = await getClientByIdService(id);
+  const client = await setUpdateClientService(id, newClient);
 
   if (!client) {
-    throw new HttpException(statusCode.NOT_FOUND, 'Client not found. Please, try again.');
+    throw new HttpException(statusCode.INTERNAL_SERVER_ERROR, 'Not possible update an client. Please, try again.');
   }
+
+  return res.status(statusCode.CREATED).json({ message: 'Client updated successfully' });
+};
+
+const deleteClientController = async (req, res) => {
+  const { id } = req.params;
 
   const response = await removeClientService(id);
 
   if (response) {
-    return res.status(statusCode.NO_CONTENT);
+    return res.status(statusCode.NO_CONTENT).end();
   }
 
   throw new HttpException(statusCode.NOT_FOUND, 'Unable to delete. Please, try again.');
@@ -94,5 +102,6 @@ module.exports = {
   getAllClientsController,
   getClientByIdController,
   setNewClientController,
+  setUpdateUserController,
   deleteClientController,
 };
