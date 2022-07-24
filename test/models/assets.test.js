@@ -33,7 +33,7 @@ describe('Verifica se Asset model existe, se tem as suas propriedades e se possu
   context('Verifica se existe todas as associações no model', () => {
 
     before(() => {
-      Client.associate({ Order });
+      Asset.associate({ Order });
     });
 
     it('Verifica se um Asset tem muitas Orders', () => {
